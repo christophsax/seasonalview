@@ -16,7 +16,7 @@ last years.
 
 To install this early version of the package, use:
 
-    devtools::install_packages("christophsax/seaonalview")
+    devtools::install_github("christophsax/seaonalview")
 
 The main function of the package is the `view` function, which works exactly as
 the current `inspect` function in
