@@ -45,7 +45,7 @@ manipulated interactively.
 ![x13story](https://raw.githubusercontent.com/christophsax/seasonalview/master/img/x13story.png)
 
 
-### Stand-Alone
+### Stand-alone
 
 Finally, you can set up a stand-alone seasonal adjustment tool, either locally
 or on a server. While itself not very useful, the `standalone` function

@@ -131,15 +131,18 @@ if (run.mode == "seasonal"){
 } else if (run.mode == "x13story"){
   # loading the already evaluated init.model saves 1/4 sec.
   load("init.model.rdata")
+
   # init.model <- seas(AirPassengers)
   # save(init.model, file = "init.model.rdata")
 
+  
 
-  # so we can run it as 'app', too, outside of inspect
-  if (!exists("init.story")){
-    story.file <- system.file(package = "x13story", "stories", "x11.Rmd")
-    init.story <- x13story::parse_x13story(file = story.file)
-  }
+  init.story <- .story.passed.to.shiny
+  # # so we can run it as 'app', too, outside of inspect
+  # if (!exists("init.story")){
+  #   story.file <- system.file(package = "x13story", "stories", "x11.Rmd")
+  #   init.story <- x13story::parse_x13story(file = story.file)
+  # }
 
 } else {
   # loading the already evaluated init.model saves 1/4 sec.
