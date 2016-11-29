@@ -37,7 +37,7 @@ if (exists(".model.passed.to.shiny", where = globalenv())){
 # } 
 
 
-wd <- system.file("app", package = "seasonalInspect")
+wd <- system.file("app", package = "seasonalview")
 
 # load functions (may go to the R folder later on)
 sapply(list.files(file.path(wd, "functions"), full.names=TRUE), source)

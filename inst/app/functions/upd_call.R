@@ -182,7 +182,7 @@ series0 <- function(m, series, reeval = TRUE, data.frame = FALSE){
     if (NCOL(df0) == 1){
       colnames(df0) <- series
     }
-    if (is.matrix(z0)){
+    if (!is.ts(z0)){
       time <- seq(NROW(z0))
     } else {
       time <- paste(floor(time(z0)), cycle(z0), sep = ":")
