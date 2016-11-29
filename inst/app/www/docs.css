@@ -1,5 +1,14 @@
 
+/*Smaller icons and less padding, so li elements fit into dropbox*/
+.navbar-nav > .messages-menu > .dropdown-menu > li .menu > li > a > .fa  {
+  padding-top: 6px;
+  font-size: 20px;
+}
+.navbar-nav>.messages-menu>.dropdown-menu>li .menu> li > a {
+  padding: 8px;
+}
 
+/*dynamic textareu, to work with JS in server.R (hacky) */
 textarea {
     resize: none;
     overflow: hidden;
@@ -7,11 +16,12 @@ textarea {
     max-height: 800px;
 }
 
-
+/*more space in shiny notfications*/
 .shiny-notification-content {
   padding: 10px;
 }
 
+/*hacky way to adjust the buttons in the navbar*/
 button.btn-navbar {
   margin-top: 9px !important;
   margin-right: 15px !important;
@@ -19,9 +29,9 @@ button.btn-navbar {
   padding: 5px !important;
   padding-left: 15px !important;
   padding-right: 15px !important;
-
 }
 
+/*Default font for logo is Helvetica. Set to default font*/
 .main-header .logo {
   font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 120%;
@@ -53,7 +63,6 @@ textarea{
 #oViewSelect {
     font-size: 80%;
 }
-
 
 
 /*dygraphs adjustments*/
