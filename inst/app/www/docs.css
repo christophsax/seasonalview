@@ -1,0 +1,74 @@
+
+
+textarea {
+    resize: none;
+    overflow: hidden;
+    min-height: 184px;
+    max-height: 800px;
+}
+
+
+.shiny-notification-content {
+  padding: 10px;
+}
+
+button.btn-navbar {
+  margin-top: 9px !important;
+  margin-right: 15px !important;
+  margin-bottom: 9px !important;
+  padding: 5px !important;
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+
+}
+
+.main-header .logo {
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 120%;
+}
+
+
+/*fixed width in text input*/
+textarea{
+  font-family: menlo, consolas, monospace;
+  font-size: 12px !important;
+}
+
+/*adjustments to headers in story*/
+.story-body > h2 {
+  font-size: 160%;
+  margin-top: -8px;
+}
+
+.story-body > h3 {
+  font-size: 110%;
+  font-weight: bold;
+}
+
+.story-body > h4 {
+  font-size: 110%;
+}
+
+/*smaller size for header selectize*/
+#oViewSelect {
+    font-size: 80%;
+}
+
+
+
+/*dygraphs adjustments*/
+.dygraph-axis-label {
+  font-size: 90%;
+}
+
+#oMainPlot {
+  width:98%;
+  /*height:60vmin;*/
+  margin-left:-15px;
+  margin-top:-20px;
+}
+
+/*exception from above*/
+.shiny-output-error-validation {
+    margin-left: 20px !important;
+}
