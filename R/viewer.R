@@ -34,8 +34,6 @@ view <- function(x = NULL, story = NULL, quiet = TRUE){
     wd <- system.file("app", package = "seasonalview")
 
     shiny::runApp(wd, quiet = quiet)
-
-    view_story(file = story, quiet = quiet)
     return(NULL)
   } 
 

@@ -344,21 +344,22 @@ observe({
 
 if (run.mode == "seasonal"){
   shiny::observe({
-  # if (input$iCancel > 0){
-  #   shiny::stopApp()
-  # }
-  if (input$iReturn > 0){
-    shiny::stopApp(returnValue = shiny::isolate(rModel$seas))
-  }
-})
-
-shiny::observe({ 
-  if (input$iOutput > 0){
-    out(shiny::isolate(rModel$seas))
-  }
- })
+    # if (input$iCancel > 0){
+    #   shiny::stopApp()
+    # }
+    if (input$iReturn > 0){
+      shiny::stopApp(returnValue = shiny::isolate(rModel$seas))
+    }
+  })
 }
 
+if (run.mode %in% c("seasonal", "x13story")){
+  shiny::observe({ 
+    if (input$iOutput > 0){
+      out(shiny::isolate(rModel$seas))
+    }
+  })
+}
 
 
 shiny::observe({
