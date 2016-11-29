@@ -1,9 +1,9 @@
 Graphical User Interface for Seasonal Adjusmtent
 ------------------------------------------------
 
-An R package that unifies the [shiny](https://cran.r-project.org/package=shiny)-
-based graphical user interfaces from the
-[seasonal](https://cran.r-project.org/package=seasonal) and
+An R package that unifies the 
+[shiny](https://cran.r-project.org/package=shiny)-based graphical user 
+interfaces from the [seasonal](https://cran.r-project.org/package=seasonal) and
 [x13story](https://github.com/christophsax/x13story) packages and the online
 adjustment tool on [www.seasonal.website](https://www.seasonal.website).
 
@@ -16,7 +16,7 @@ last years.
 
 To install this early version of the package, use:
 
-    devtools::install_packages("christophsax/seasonallab")
+    devtools::install_packages("christophsax/seaonalview")
 
 The main function of the package is the `view` function, which works exactly as
 the current `inspect` function in
