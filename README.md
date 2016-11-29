@@ -12,7 +12,7 @@ These interfaces have grown over time and have become difficult to maintain. The
 best from each interface, and makes it available to the others. In a way, this
 is a summary of what I learned about
 [shiny](https://cran.r-project.org/package=shiny) and web development over the
-last years.
+last few years.
 
 To install this early version of the package, use:
 
@@ -29,7 +29,7 @@ the current `inspect` function in
 If you have the [x13story](https://github.com/christophsax/x13story) package
 installed, you can call the function with the `story` argument. This will render
 an R Markdown document and produce a *story* on seasonal adjustment that can be
-manipulated interactively.
+manipulated interactively. 
 
     mystory <- system.file(package = "x13story", "stories", "x11.Rmd")
     view(story = mystory)
