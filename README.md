@@ -1,4 +1,4 @@
-Graphical User Interface for Seasonal Adjusmtent
+Graphical User Interface for Seasonal Adjustment
 ------------------------------------------------
 
 An R package that unifies the 
@@ -18,6 +18,9 @@ To install this early version of the package, use:
 
     devtools::install_github("christophsax/seasonalview")
 
+
+### Seasonal
+
 The main function of the package is the `view` function, which works exactly as
 the current `inspect` function in
 [seasonal](https://cran.r-project.org/package=seasonal). Here is an example:
@@ -28,6 +31,9 @@ the current `inspect` function in
 
 ![seasonal](https://raw.githubusercontent.com/christophsax/seasonalview/master/img/seasonal.png)
 
+
+### X-13 Story
+
 If you have the [x13story](https://github.com/christophsax/x13story) package
 installed, you can call the function with the `story` argument. This will render
 an R Markdown document and produce a *story* on seasonal adjustment that can be
@@ -37,6 +43,9 @@ manipulated interactively.
     view(story = mystory)
 
 ![x13story](https://raw.githubusercontent.com/christophsax/seasonalview/master/img/x13story.png)
+
+
+### Stand-Alone
 
 Finally, you can set up a stand-alone seasonal adjustment tool, either locally
 or on a server. While itself not very useful, the `standalone` function
