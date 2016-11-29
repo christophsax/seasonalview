@@ -26,6 +26,8 @@ the current `inspect` function in
     m <- seas(AirPassengers)
     view(m)
 
+![seasonal](https://raw.githubusercontent.com/christophsax/seasonalview/master/img/seasonal.png)
+
 If you have the [x13story](https://github.com/christophsax/x13story) package
 installed, you can call the function with the `story` argument. This will render
 an R Markdown document and produce a *story* on seasonal adjustment that can be
@@ -34,12 +36,16 @@ manipulated interactively.
     mystory <- system.file(package = "x13story", "stories", "x11.Rmd")
     view(story = mystory)
 
+![x13story](https://raw.githubusercontent.com/christophsax/seasonalview/master/img/x13story.png)
+
 Finally, you can set up a stand-alone seasonal adjustment tool, either locally
 or on a server. While itself not very useful, the `standalone` function
 showcases how a local version of
 [www.seasonal.website](https://www.seasonal.website) would look like this:
 
     standalone()
+
+![standalone](https://raw.githubusercontent.com/christophsax/seasonalview/master/img/standalone.png)
 
 Thanks for your feedback, ideas, bug-reports. 
 [Contact me.](mailto:christoph.sax@gmail.com)
