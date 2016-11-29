@@ -16,13 +16,13 @@ last years.
 
 To install this early version of the package, use:
 
-    devtools::install_github("christophsax/seaonalview")
+    devtools::install_github("christophsax/seasonalview")
 
 The main function of the package is the `view` function, which works exactly as
 the current `inspect` function in
 [seasonal](https://cran.r-project.org/package=seasonal). Here is an example:
 
-    library(seaonalview)  # this will also load seasonal
+    library(seasonalview)  # this will also load seasonal
     m <- seas(AirPassengers)
     view(m)
 
