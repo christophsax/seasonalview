@@ -46,36 +46,6 @@ format_spclist <- function(x, lastcall){
 }
 
 
-# no limits on local machines
-IsCallSave <- function(cl){
-  fun.allowed <- c("window", "genhol", "ts", "seas", "c", "list", "-", "+", "*", "/")
-
-  # () can be used to mask calls, dont allow them
-  if ("(" %in% sapply(cl, class)){
-    return(FALSE)
-  }
-  # does the call have subcalls, if not, it is save
-  is.scl <- sapply(cl, class) == "call"
-  if (all(!(is.scl))){
-    return(TRUE)
-  }
-  # if it has subcalls, they must be further analyzed
-  scl <- cl[is.scl]
-  scl.names <- unlist(lapply(scl, function(e) as.character(e[[1]])))
-  if (!all(scl.names %in% fun.allowed)){
-    not.allowed <- scl.names[!scl.names %in% fun.allowed]
-    write(paste("### Attempt to call forbidden function:", not.allowed), file = file.path(gLdir, "danger.txt"), append = TRUE)
-    return(FALSE)
-  } else {
-    rr <- unlist(lapply(scl, IsCallSave))
-    if (all(rr)){
-      return(TRUE)
-    } else {
-      return(FALSE)
-    }
-  }
-}
-
 
 EvalOrFail <- function(cstr, envir){
 
