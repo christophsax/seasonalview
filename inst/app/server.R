@@ -178,15 +178,15 @@ output$oFOpts <- renderUI({
 
 # # summary
 output$oSummaryCoefs <- renderUI({
-  HTML(HTMLCoefs(rModel$seas))
+  HTML(html_coefs(rModel$seas))
 })
 
 output$oSummaryStats <- renderUI({
-  HTML(HTMLStats(rModel$seas))
+  HTML(html_stats(rModel$seas))
 })
 
 output$oSummaryTests <- renderUI({
-  HTML(HTMLTests(rModel$seas))
+  HTML(html_tests(rModel$seas))
 })
 
 

@@ -1,5 +1,5 @@
 # x "seas" object
-HTMLCoefs <- function(x){
+html_coefs <- function(x){
   coefs <- coef(summary(x))
   Signif <- symnum(coefs[, 'Pr(>|z|)'], corr = FALSE, na = FALSE, 
                     cutpoints = c(0, 0.001, 0.01, 0.05, 0.1, 1), 
@@ -16,7 +16,7 @@ HTMLCoefs <- function(x){
 }
 
 
-HTMLStats <- function(x, digits = 5){
+html_stats <- function(x, digits = 5){
   x <- summary(x)
 
   z <- list()
@@ -44,10 +44,7 @@ HTMLStats <- function(x, digits = 5){
 }
 
 
-
-
-
-HTMLTests <- function(x, digits = 4){
+html_tests <- function(x, digits = 4){
   x <- summary(x)
 
   z <- list()
