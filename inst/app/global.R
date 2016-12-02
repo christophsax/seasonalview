@@ -3,7 +3,7 @@ library(seasonal)
 library(dygraphs)
 library(xts)
 library(xtable)
-
+library(shinydashboard)
 
 data(holiday)
 data(seasonal)
@@ -25,6 +25,11 @@ if (exists(".model.passed.to.shiny", where = globalenv())){
 } else {
   run.mode <- "standalone"  
 }
+
+
+# triggers a few changes that we want to use on www.seasonal.website
+on.website <- FALSE
+
 
 
 # --- app directory ------------------------------------------------------------
@@ -308,8 +313,13 @@ if (run.mode == "standalone"){
       ),
       tags$div(class="navbar-custom-menu", 
         tags$ul(class="nav navbar-nav",
-
-
+          if (on.website){
+            HTML('<li><a href="http://www.seasonal.website"><strong>Workbench</strong></a></li>
+           <li><a href="seasonal.html">Introduction</a></li>
+           <li style=""><a href="examples.html">Examples</a></li>')
+          } else {
+            NULL
+          },
           # Exampe Menu
           tags$li(class="dropdown messages-menu",
             tags$a(href="#", class="dropdown-toggle", `data-toggle`="dropdown", 
@@ -321,6 +331,7 @@ if (run.mode == "standalone"){
               tags$li(class="header", "Example data series"), 
               tags$li(style="position: relative; overflow: hidden; width: auto; height: 200px;",
                 tags$ul(class="menu",
+
                   html_li_example(id = "AirPassengers", 
                                   title = "Airline Passengers", 
                                   body = "The classic Box & Jenkins airline data", 

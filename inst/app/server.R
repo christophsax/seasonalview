@@ -18,6 +18,7 @@ rError <- reactiveValues(msg = "")
 rStory <- reactiveValues(story = init.story, view.no = 1)
 rStoryFeedback <- reactiveValues(click = NULL, timestamp = Sys.time())
 
+# a function with reactive consequences. Must be inside shinyServer()
 upd_or_fail <- function(z){
   if (inherits(z, "try-error")){
     rError$msg <- z
@@ -26,6 +27,25 @@ upd_or_fail <- function(z){
     rError$msg <- ""
   }
 }   
+
+
+# --- URL ----------------------------------------------------------------------
+
+if (on.website){
+  qstr <- isolate(session$clientData$url_search)
+  ql <- parseQueryString(qstr)
+  if (!is.null(ql$call)){
+    txt <- ql$call
+    call <- try(as.call(parse(text = txt)[[1]]))
+    if (inherits(call, "try-error")){
+      z <- call
+    } else {
+      z <- upd_seas(init.model, call = call, senv = senv)
+    }
+    upd_or_fail(z)
+  }
+}
+
 
 # --- call updater -------------------------------------------------------------
 
