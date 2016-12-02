@@ -47,29 +47,29 @@ format_spclist <- function(x, lastcall){
 
 
 
-AddSeriesToCall <- function(cl, series, INSPDATA){
-  SP <- INSPDATA[INSPDATA$long == series, ]
+# AddSeriesToCall <- function(cl, series, INSPDATA){
+#   SP <- INSPDATA[INSPDATA$long == series, ]
 
-  lcl <- as.list(cl)
+#   lcl <- as.list(cl)
 
-  # add save arg
-  lcl[[paste0(SP$spec, ".save")]] <- SP$short
+#   # add save arg
+#   lcl[[paste0(SP$spec, ".save")]] <- SP$short
   
-  # add requirements if secifed
-  if (SP$requires != ""){
-    rl <- eval(parse(text = paste("list(", SP$requires, ")")))
-    # ignore requirements that are already fulfilled
-    rl <- rl[!names(rl) %in% names(lcl)]
-    if (length(rl) > 0){
-      lcl <- c(lcl, rl)
-    }
-  }
+#   # add requirements if secifed
+#   if (SP$requires != ""){
+#     rl <- eval(parse(text = paste("list(", SP$requires, ")")))
+#     # ignore requirements that are already fulfilled
+#     rl <- rl[!names(rl) %in% names(lcl)]
+#     if (length(rl) > 0){
+#       lcl <- c(lcl, rl)
+#     }
+#   }
 
-  as.call(lcl)
-}
+#   as.call(lcl)
+# }
 
 
-GetFOpts <- function(x){
+get_fopts <- function(x){
  if (missing(x)){
   return(list(method = "user", 
               transform = "user", 
@@ -194,7 +194,7 @@ GetFOpts <- function(x){
 }
 
 
-AddFOpts <- function(x, FOpts){
+add_fopts <- function(x, FOpts){
 
   # call in which all arguments are specified by their full names
   lc <- as.list(match.call(definition = seas, x$call))

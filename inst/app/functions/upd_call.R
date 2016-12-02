@@ -142,17 +142,24 @@ upd_seas <- function(m, call = NULL, series = NULL, force = FALSE, senv){
 
 
 
+pc <- function(x){
+  z <- diff(x) / lag(x, -1)
+  if (inherits(z, "mts")){
+    colnames(z) <- paste(colnames(x), "(%)")
+  }
+  z
+}
+
 
 # like series, but also handles
 # c("main", "mainpc"), c("irregular", "seasonal", "trend")
 # as they are returned by the series selector
 
 # returns xts or data.frame, with series name also for single series
-
 series0 <- function(m, series, reeval = TRUE, data.frame = FALSE){
   if (series %in% c("main", "mainpc")){
     z0 <- cbind(original = original(m), adjusted = final(m))
-    if (series == "mainpc") z0 <- PC(z0)
+    if (series == "mainpc") z0 <- pc(z0)
   } else {
     if (series %in% c("irregular", "seasonal", "trend")){
       series <- paste0(adj_method(m), ".", series)
@@ -231,9 +238,6 @@ adj_method <- function(x){
     "none"
   }
 }
-
-
-
 
 import.spc2 <- function(file = NULL, txt){
   

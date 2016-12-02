@@ -1,4 +1,4 @@
-ReadAnything <- function(file = "~/test.xlsx", type = NULL){
+read_anything <- function(file = "~/test.xlsx", type = NULL){
   # Input checks
 
   file <- normalizePath(file, mustWork = TRUE)

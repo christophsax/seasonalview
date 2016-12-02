@@ -102,7 +102,7 @@ observe({
   m <- isolate(rModel$seas)
 
   if (length(FOpts) > 0 && !is.null(m)){
-    call <- AddFOpts(m, FOpts)
+    call <- add_fopts(m, FOpts)
     z <- upd_seas(m, call = call, senv = senv)
     upd_or_fail(z)
   }
@@ -142,7 +142,7 @@ output$oViewSelect <- renderUI({
 output$oFOpts <- renderUI({
   m <- rModel$seas
 
-  fopts <- GetFOpts(m)
+  fopts <- get_fopts(m)
 
   # update if new fivebestmdl are available, otherwise, use last fivebestmdl
   if (is.null(m$spc$automdl$print)){
@@ -387,7 +387,7 @@ shiny::observe({
     m <- shiny::isolate(rModel$seas)
     scl <- static(m, test = FALSE)
 
-    # fix to avoid reevalation after sorting by AddFOpts
+    # fix to avoid reevalation after sorting by add_fopts
     if (!is.null(scl$regression.variables)){
       rv <- scl$regression.variables
       eav <- c("easter[1]", "easter[8]", "easter[15]")
@@ -450,7 +450,7 @@ observe({
       uplMsg("<h4>Upload error</h4>File type must be either <strong>xlsx</strong> or <strong>csv</strong>.")
       return(NULL)
     } 
-    ser <- try(ReadAnything(file.path(upl$datapath), type))
+    ser <- try(read_anything(file.path(upl$datapath), type))
     if (inherits(ser, "try-error")){
       uplMsg("<h4>Reading error</h4> <p>The file should have the <strong>time in the first</strong>, the <strong>data in the second</strong> column.<p><p> Several time formats are supported, including Excel time formats.</p> <p>If you need an <strong>example file</strong>, download one of the demo series; the file is also uploadable.</p>")
     } else {
