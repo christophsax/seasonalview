@@ -47,43 +47,6 @@ format_spclist <- function(x, lastcall){
 
 
 
-EvalOrFail <- function(cstr, envir){
-
-  # if (grepl(";", cstr)){
-  #   write(cstr, file = file.path(gLdir, "danger.txt"), append = TRUE)
-  #   z <- "Call is not allowed."
-  #   class(z) <- "try-error"
-  #   return(z)
-  # }
-
-  pcl <- try(parse(text = cstr))
-  if (inherits(pcl, "try-error")){
-    z <- "Invalid call."
-    class(z) <- "try-error"
-  } else if (inherits(try(as.call(pcl)[[1]][[1]], silent = TRUE), "try-error")){
-    z <- "Invalid call."
-    class(z) <- "try-error"
-  } else if (as.call(pcl)[[1]][[1]] != "seas"){
-    z <- "Only calls to seas() are allowed."
-    class(z) <- "try-error"
-  } else if (length(as.call(pcl)) > 1){
-    write(cstr, file = file.path(gLdir, "danger.txt"), append = TRUE)
-    z <- "Call is not allowed."
-    class(z) <- "try-error"
-  } else if (!IsCallSave(as.call(pcl)[[1]])){
-    write(cstr, file = file.path(gLdir, "danger.txt"), append = TRUE)
-    z <- "Call is not allowed."
-    class(z) <- "try-error"
-  } else {
-    z <- try(eval(pcl, envir = envir), silent = TRUE)
-  }
-  z
-}
-
-
-
-
-
 AddSeriesToCall <- function(cl, series, INSPDATA){
   SP <- INSPDATA[INSPDATA$long == series, ]
 
