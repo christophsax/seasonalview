@@ -39,8 +39,7 @@ installed, you can call the function with the `story` argument. This will render
 an R Markdown document and produce a *story* on seasonal adjustment that can be
 manipulated interactively. 
 
-    mystory <- system.file(package = "x13story", "stories", "x11.Rmd")
-    view(story = mystory)
+    view(story = system.file(package = "x13story", "stories", "x11.Rmd"))
 
 ![x13story](https://raw.githubusercontent.com/christophsax/seasonalview/master/img/x13story.png)
 
@@ -56,5 +55,19 @@ showcases how a local version of
 
 ![standalone](https://raw.githubusercontent.com/christophsax/seasonalview/master/img/standalone.png)
 
-Thanks for your feedback, ideas, bug-reports. 
-[Contact me.](mailto:christoph.sax@gmail.com)
+
+### License and Credits
+
+**seasonalview** is free and open source, licensed under GPL-3. It is built on
+top of a large number of fantastic open source software. It uses
+[shiny](https://cran.r-project.org/package=shinyl) and
+[shinydashboard](https://cran.r-project.org/package=shinydashboardl), through
+which it accesses [bootstrap](http://getbootstrap.com) and
+[AdminLTE](https://almsaeedstudio.com/themes/AdminLTE/index2.html), which in
+turn depend on a plethora of open source web technologies themselves. It also
+uses the [dygraphs](http://dygraphs.com), and of course
+[seasonal](https://cran.r-project.org/package=seasonal),
+[x13binary](https://cran.r-project.org/package=x13binary) and [X-13ARIMA.SEATS](https://www.census.gov/srd/www/x13as/),
+the wonderful seasonal adjustment software by the U.S. Census Bureau.
+
+Thanks for your feedback, your ideas and bug-reports. [Contact me.](mailto:christoph.sax@gmail.com)
