@@ -59,13 +59,13 @@ showcases how a local version of
 ### License and Credits
 
 **seasonalview** is free and open source, licensed under GPL-3. It is built on
-top of a large number of fantastic open source software. It uses
+top of a large number of fantastic open source tools It uses
 [shiny](https://cran.r-project.org/package=shinyl) and
 [shinydashboard](https://cran.r-project.org/package=shinydashboardl), through
 which it accesses [bootstrap](http://getbootstrap.com) and
 [AdminLTE](https://almsaeedstudio.com/themes/AdminLTE/index2.html), which in
 turn depend on a plethora of open source web technologies themselves. It also
-uses the [dygraphs](http://dygraphs.com), and of course
+uses [dygraphs](http://dygraphs.com), and, of course,
 [seasonal](https://cran.r-project.org/package=seasonal),
 [x13binary](https://cran.r-project.org/package=x13binary) and [X-13ARIMA.SEATS](https://www.census.gov/srd/www/x13as/),
 the wonderful seasonal adjustment software by the U.S. Census Bureau.
