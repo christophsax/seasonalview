@@ -31,26 +31,14 @@ if (exists(".model.passed.to.shiny", where = globalenv())){
 on.website <- FALSE
 
 
-
 # --- app directory ------------------------------------------------------------
-
-
-# # make sure you have the same wd as on server
-# if (version$os != "linux-gnu"){ 
-
-#   setwd(system.file("app", package = "seasonalInspect"))
-# } 
 
 if (on.website){
   wd <- "."
+  sapply(list.files(file.path(wd, "functions"), full.names=TRUE), source)
 } else {
   wd <- system.file("app", package = "seasonalview")
 }
-
-
-# load functions (may go to the R folder later on)
-sapply(list.files(file.path(wd, "functions"), full.names=TRUE), source)
-
 
 # --- List with options ------------------------------------------------------
 
@@ -159,7 +147,7 @@ if (run.mode == "seasonal"){
   init.story <- NULL
 }
 
-init.model <- upd_seas(init.model, series = "main")
+init.model <- seasonalview:::upd_seas(init.model, series = "main")
 
 
 

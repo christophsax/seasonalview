@@ -40,7 +40,7 @@ if (on.website){
     if (inherits(call, "try-error")){
       z <- call
     } else {
-      z <- upd_seas(init.model, call = call, senv = senv)
+      z <- seasonalview:::upd_seas(init.model, call = call, senv = senv)
     }
     upd_or_fail(z)
   }
@@ -53,7 +53,7 @@ if (on.website){
 observe({
   series <- input$iSeries
   m <- isolate(rModel$seas)
-  z <- upd_seas(m, series = series, senv = senv)
+  z <- seasonalview:::upd_seas(m, series = series, senv = senv)
   upd_or_fail(z)
 })
 
@@ -69,7 +69,7 @@ observe({
       if (inherits(call, "try-error")){
         z <- call
       } else {
-        z <- upd_seas(m, call = call, senv = senv)
+        z <- seasonalview:::upd_seas(m, call = call, senv = senv)
       }
     } else if (at == "X-13"){
       txt <- isolate(input$iTerminalX13)
@@ -80,7 +80,7 @@ observe({
         call$x <- m$call$x
         call$xreg <- m$call$xreg
         call$xtrans <- m$call$xtrans
-        z <- upd_seas(m, call = call, senv = senv)
+        z <- seasonalview:::upd_seas(m, call = call, senv = senv)
       }
     } else {
       stop("wrong at value")
@@ -102,8 +102,8 @@ observe({
   m <- isolate(rModel$seas)
 
   if (length(FOpts) > 0 && !is.null(m)){
-    call <- add_fopts(m, FOpts)
-    z <- upd_seas(m, call = call, senv = senv)
+    call <- seasonalview:::add_fopts(m, FOpts)
+    z <- seasonalview:::upd_seas(m, call = call, senv = senv)
     upd_or_fail(z)
   }
  })
@@ -117,7 +117,7 @@ output$oMainPlot <- renderDygraph({
 
   m <- rModel$seas
   # could even get view from m
-  p <- plot_dygraph(m, series = m$series.view)  
+  p <- seasonalview:::plot_dygraph(m, series = m$series.view)  
   shiny::validate(shiny::need(!is.null(p), 
   "This view is not available for the model. Change view or model."))
 
@@ -130,7 +130,7 @@ output$oMainPlot <- renderDygraph({
 output$oViewSelect <- renderUI({
   m <- rModel$seas
   cc <- lSeries
-  if (adj_method(m) == "x11"){
+  if (seasonalview:::adj_method(m) == "x11"){
     # cc$FORECAST <- c(cc$FORECAST, "Backcasts" = "forecast.backcasts")
   } 
   a <- selectInput("iSeries", NULL, choices = cc, selected = m$series.view, width = "240px")
@@ -142,7 +142,7 @@ output$oViewSelect <- renderUI({
 output$oFOpts <- renderUI({
   m <- rModel$seas
 
-  fopts <- get_fopts(m)
+  fopts <- seasonalview:::get_fopts(m)
 
   # update if new fivebestmdl are available, otherwise, use last fivebestmdl
   if (is.null(m$spc$automdl$print)){
@@ -178,15 +178,15 @@ output$oFOpts <- renderUI({
 
 # # summary
 output$oSummaryCoefs <- renderUI({
-  HTML(html_coefs(rModel$seas))
+  HTML(seasonalview:::html_coefs(rModel$seas))
 })
 
 output$oSummaryStats <- renderUI({
-  HTML(html_stats(rModel$seas))
+  HTML(seasonalview:::html_stats(rModel$seas))
 })
 
 output$oSummaryTests <- renderUI({
-  HTML(html_tests(rModel$seas))
+  HTML(seasonalview:::html_tests(rModel$seas))
 })
 
 
@@ -194,7 +194,7 @@ output$oSummaryTests <- renderUI({
 # terminal
 output$oTerminal <- renderUI({
   m <- rModel$seas
-  cstr <- format_seascall(m$call)
+  cstr <- seasonalview:::format_seascall(m$call)
   tagList(
   tags$textarea(id="iTerminal", class="form-control", rows = 10, cols=60, cstr),
     # auto extending the textarea (a bit hacky)
@@ -242,7 +242,7 @@ output$oStory <- shiny::renderUI({
     return(NULL)
   } else {
     title <- attr(story, "yaml")$title
-    return(withMathJax(html_storyview(story[[view.no]], title = title)))
+    return(withMathJax(seasonalview:::html_storyview(story[[view.no]], title = title)))
   }
 })
 
@@ -323,7 +323,7 @@ observe({
   # message(m$series.view)
   m <- view$m
 
-  z <- upd_seas(m, series = m$series.view, senv = senv)
+  z <- seasonalview:::upd_seas(m, series = m$series.view, senv = senv)
   rModel$seas <- z
 })
 
@@ -353,7 +353,7 @@ observe({
   if (!is.null(input$iRevert)){
     if (input$iRevert > 0){
     m <- isolate(rModel$seas)
-    z <- upd_seas(m, senv = senv)
+    z <- seasonalview:::upd_seas(m, senv = senv)
     z$msg <- ""  
     upd_or_fail(z)
     }
@@ -397,7 +397,7 @@ shiny::observe({
       scl$regression.variables <- rv
     }
     
-    z <- upd_seas(m, call = scl, senv = senv)
+    z <- seasonalview:::upd_seas(m, call = scl, senv = senv)
     upd_or_fail(z)
   }
 })
@@ -461,7 +461,7 @@ observe({
       assign("ser", ser, envir = senv)
 
       # also update if the call look the same; data has changed.
-      z <- upd_seas(init.model, call, force = TRUE, senv = senv)
+      z <- seasonalview:::upd_seas(init.model, call, force = TRUE, senv = senv)
 
       upd_or_fail(z)
 
@@ -483,7 +483,7 @@ observe({
     } else {
       call$x <- as.name(series.name)
     }
-    z <- upd_seas(m, call = call, senv = senv)
+    z <- seasonalview:::upd_seas(m, call = call, senv = senv)
     upd_or_fail(z)
   }
 })
