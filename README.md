@@ -62,7 +62,7 @@ showcases how a local version of
 top of a large number of fantastic open source tools. It uses
 [shiny](https://cran.r-project.org/package=shiny) and
 [shinydashboard](https://cran.r-project.org/package=shinydashboard), through
-which it accesses [https://jquery.com](jQuery),
+which it accesses [jQuery](https://jquery.com),
 [bootstrap](http://getbootstrap.com) and
 [AdminLTE](https://almsaeedstudio.com/themes/AdminLTE/index2.html), which in
 turn depend on a plethora of open source web technologies themselves. It also
