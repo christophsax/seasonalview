@@ -1,4 +1,4 @@
 # no limits on local machines
-IsCallSave <- function(cl){
+is_call_save <- function(cl){
   TRUE
 }
