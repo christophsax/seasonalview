@@ -59,7 +59,7 @@ showcases how a local version of
 ### License and Credits
 
 **seasonalview** is free and open source, licensed under GPL-3. It is built on
-top of a large number of fantastic open source tools It uses
+top of a large number of fantastic open source tools. It uses
 [shiny](https://cran.r-project.org/package=shinyl) and
 [shinydashboard](https://cran.r-project.org/package=shinydashboardl), through
 which it accesses [bootstrap](http://getbootstrap.com) and
