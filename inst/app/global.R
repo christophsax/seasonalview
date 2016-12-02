@@ -41,8 +41,12 @@ on.website <- FALSE
 #   setwd(system.file("app", package = "seasonalInspect"))
 # } 
 
+if (on.website){
+  wd <- "."
+} else {
+  wd <- system.file("app", package = "seasonalview")
+}
 
-wd <- system.file("app", package = "seasonalview")
 
 # load functions (may go to the R folder later on)
 sapply(list.files(file.path(wd, "functions"), full.names=TRUE), source)

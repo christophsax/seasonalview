@@ -68,7 +68,12 @@ dashboardPage(
               $(this).addClass("active");
             });
     </script>
-    ')
+    '),
+    if (on.website){
+      ga
+    } else {
+      NULL
+    }
 
   ), 
   title = "seasonal: R interface to X-13ARIMA-SEATS",
