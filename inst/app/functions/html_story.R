@@ -1,52 +1,52 @@
 
-HTMLMenuLi <- function(e, id){
-  title <- attr(e, "yaml")$title
-  subtitle <- attr(e, "yaml")$subtitle
-  icon <- attr(e, "yaml")$icon
+# html_menu_li <- function(e, id){
+#   title <- attr(e, "yaml")$title
+#   subtitle <- attr(e, "yaml")$subtitle
+#   icon <- attr(e, "yaml")$icon
 
-  if (is.null(icon)) icon <- "fa-road"
-  if (is.null(subtitle)) subtitle <- "Add a subtitle to your YAML header"
-  if (is.null(title)) title <- "Add a title to your YAML header"
+#   if (is.null(icon)) icon <- "fa-road"
+#   if (is.null(subtitle)) subtitle <- "Add a subtitle to your YAML header"
+#   if (is.null(title)) title <- "Add a title to your YAML header"
 
-  tags$li(
-    tags$a(id = id, href="#", class="media shiny-id-el shiny-force",
-      tags$div(class="media-left", 
-        tags$span(class="icon-wrap bg-danger",
-          tags$i(class="fa fa-calendar fa-lg")
-        )
-      ),
-      tags$div(class="media-body", 
-        tags$div(class="text-nowrap", title),
-        tags$small(class="text-muted", subtitle)
-      )
-    )
-  )
-}                           
+#   tags$li(
+#     tags$a(id = id, href="#", class="media shiny-id-el shiny-force",
+#       tags$div(class="media-left", 
+#         tags$span(class="icon-wrap bg-danger",
+#           tags$i(class="fa fa-calendar fa-lg")
+#         )
+#       ),
+#       tags$div(class="media-body", 
+#         tags$div(class="text-nowrap", title),
+#         tags$small(class="text-muted", subtitle)
+#       )
+#     )
+#   )
+# }                           
 
 
-HTMLMenu <- function(STORIES){
-  # tags$p("dsfsdfsd")
+# HTMLMenu <- function(STORIES){
+#   # tags$p("dsfsdfsd")
   
-  tagList(
-    tags$div(id="iSelectorFeedback", class="shiny-id-callback",
-      tags$ul(class = "head-list", 
-        tagList(
-        Map(HTMLMenuLi, e = STORIES, id = names(STORIES))
-        )
-      )
-    ),
-    tags$script('
-          $(".shiny-id-el").click(function() {
-                $(".shiny-id-el").removeClass("active");
-                $(this).addClass("active");
-              });
-      '
-    )
-  )
-}
+#   tagList(
+#     tags$div(id="iSelectorFeedback", class="shiny-id-callback",
+#       tags$ul(class = "head-list", 
+#         tagList(
+#         Map(html_menu_li, e = STORIES, id = names(STORIES))
+#         )
+#       )
+#     ),
+#     tags$script('
+#           $(".shiny-id-el").click(function() {
+#                 $(".shiny-id-el").removeClass("active");
+#                 $(this).addClass("active");
+#               });
+#       '
+#     )
+#   )
+# }
 
 
-HTMLx13view <- function(view, title = "My Story"){
+html_storyview <- function(view, title = "My Story"){
 
   # if first or last, buttons are disabled
   p.button <- tags$button(id = "prev", class = "btn btn-sm btn-primary shiny-id-el", type = "button", 
@@ -60,8 +60,6 @@ HTMLx13view <- function(view, title = "My Story"){
   if (view$first) p.button$attribs$disabled <- NA
   if (view$last) n.button$attribs$disabled <- NA
 
-
-
   tagList(
     tags$div(id="iStoryFeedback", class="box",
       tags$div(class = "box-header with-border",
@@ -73,8 +71,6 @@ HTMLx13view <- function(view, title = "My Story"){
             
           ),
           tags$button(id = "close", class = "btn btn-box-tool shiny-id-el", tags$i(class = "fa fa-times"))
-
-          #tags$button(id = "close", class = "btn btn-default shiny-id-el", tags$i(class = "fa fa-times"))
         )
       ),
 
@@ -85,8 +81,6 @@ HTMLx13view <- function(view, title = "My Story"){
         HTML(view$body.html)
       )
     ),
-
-
 
     tags$script('
           $(".shiny-id-el").click(function() {

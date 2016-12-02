@@ -242,7 +242,7 @@ output$oStory <- shiny::renderUI({
     return(NULL)
   } else {
     title <- attr(story, "yaml")$title
-    return(withMathJax(HTMLx13view(story[[view.no]], title = title)))
+    return(withMathJax(html_storyview(story[[view.no]], title = title)))
   }
 })
 
