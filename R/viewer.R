@@ -83,7 +83,7 @@ view <- function(x = NULL, story = NULL, quiet = TRUE){
     stop("first argument must be of class 'seas'")
   }
 
-  .GlobalEnv$.model.passed.to.shiny <- m
+  .GlobalEnv$.model.passed.to.shiny <- x
   on.exit(rm(.model.passed.to.shiny, envir = .GlobalEnv))
 
   cat("Press ESC (or Ctrl-C) to get back to the R session\n")
