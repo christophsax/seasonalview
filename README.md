@@ -49,7 +49,7 @@ manipulated interactively.
 Finally, you can set up a stand-alone seasonal adjustment tool, either locally
 or on a server. While itself not very useful, the `standalone` function
 showcases how a local version of
-[www.seasonal.website](https://www.seasonal.website) would look like this:
+[www.seasonal.website](www.seasonal.website) would look like:
 
     standalone()
 
