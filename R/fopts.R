@@ -123,7 +123,11 @@ get_fopts <- function(x){
   z
 }
 
-
+#' @import seasonal
+#' @import stats
+#' @import dygraphs
+#' @import xtable
+#' @import utils
 add_fopts <- function(x, FOpts){
 
   # call in which all arguments are specified by their full names

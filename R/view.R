@@ -1,12 +1,3 @@
-#' @export
-standalone <- function(){ 
-  cat("Press ESC (or Ctrl-C) to get back to the R session\n")
-  wd <- system.file("app", package = "seasonalview")
-  shiny::runApp(wd, quiet = TRUE)
-}
-
-
-
 #' Interactively Modify a Seasonal Adjustment Model
 #' 
 #' Interactively modify a \code{"seas"} object. The goal of \code{view} is 
@@ -50,6 +41,13 @@ standalone <- function(){
 #' 
 #' }
 #' @export
+#' @importFrom xts as.xts
+#' @importFrom xtable xtable
+#' @importFrom utils read.csv
+#' @importFrom stats ts time Box.test shapiro.test symnum coef
+#' @importFrom dygraphs dygraph dyAnnotation dyLegend dyOptions
+#' @importFrom seasonal outlier
+#' @importFrom shiny tags tagList HTML
 view <- function(x = NULL, story = NULL, quiet = TRUE){ 
   if (!is.null(story)){
     if (!require(x13story)){
