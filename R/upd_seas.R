@@ -1,4 +1,3 @@
-
 # the good thing here is that we can update call and series at the same time,
 # causing only ONE reevaluation.
 upd_seas <- function(m, call = NULL, series = NULL, force = FALSE, senv){

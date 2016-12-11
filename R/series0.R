@@ -1,13 +1,3 @@
-
-pc <- function(x){
-  z <- diff(x) / lag(x, -1)
-  if (inherits(z, "mts")){
-    colnames(z) <- paste(colnames(x), "(%)")
-  }
-  z
-}
-
-
 # like series, but also handles
 # c("main", "mainpc"), c("irregular", "seasonal", "trend")
 # as they are returned by the series selector
@@ -15,7 +5,7 @@ pc <- function(x){
 # returns xts or data.frame, with series name also for single series
 series0 <- function(m, series, reeval = TRUE, data.frame = FALSE){
   if (series %in% c("main", "mainpc")){
-    z0 <- cbind(original = original(m), adjusted = final(m))
+    z0 <- cbind(original = seasonal::original(m), adjusted = seasonal::final(m))
     if (series == "mainpc") z0 <- pc(z0)
   } else {
     if (series %in% c("irregular", "seasonal", "trend")){
@@ -38,7 +28,7 @@ series0 <- function(m, series, reeval = TRUE, data.frame = FALSE){
     return(data.frame(time = time, df0))
   }
   
-  z <- try(xts::as.xts(z0))
+  z <- try(as.xts(z0))
 
   if (inherits(z, "try-error")){
     z <- try(xts::xts(z0, order.by = as.Date(paste(seq(NROW(z0)), "1", "1", sep = "-"))))
@@ -53,3 +43,12 @@ series0 <- function(m, series, reeval = TRUE, data.frame = FALSE){
   }
   z
 }
+
+pc <- function(x){
+  z <- diff(x) / lag(x, -1)
+  if (inherits(z, "mts")){
+    colnames(z) <- paste(colnames(x), "(%)")
+  }
+  z
+}
+

@@ -1,5 +1,3 @@
-
-
 import.spc2 <- function(file = NULL, txt){
   
   # stopifnot(file.exists(file))

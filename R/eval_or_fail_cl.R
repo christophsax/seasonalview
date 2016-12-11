@@ -1,6 +1,3 @@
-# call <- m$call
-# eval_or_fail_cl(m$call)
-
 eval_or_fail_cl <- function(call, senv){
   if (call[[1]] != "seas"){
     z <- "Only calls to seas() are allowed."

@@ -9,7 +9,6 @@ read_anything <- function(file = "~/test.xlsx", type = NULL){
   }
 
   if (type == "xlsx"){
-    # library(openxlsx)
 
     df <- openxlsx::read.xlsx(file)
 
@@ -87,9 +86,7 @@ read_anything <- function(file = "~/test.xlsx", type = NULL){
 }
 
 
-
-
-# Excel Date Format
+# Excel Date Format
 # 2014:3, 2014:4 ...
 
 # convertToDate(x)

@@ -1,14 +1,3 @@
-library(shiny)
-library(seasonal)
-library(dygraphs)
-library(xts)
-library(xtable)
-library(shinydashboard)
-
-data(holiday)
-data(seasonal)
-
-
 # --- Mode ---------------------------------------------------------------------
 
 # Shiny app supports 3 modes: 
@@ -17,11 +6,18 @@ data(seasonal)
 # 2. x13-story  where it works on an .Rmd file, to render stories
 # 3. stand-alone, with upload and download buttons
 
-
-if (exists(".model.passed.to.shiny", where = globalenv())){
+if (exists(".model.passed.to.shiny", where = sys.frame(1))){
   run.mode <- "seasonal"  
-} else if (exists(".story.passed.to.shiny", where = globalenv())){
+} else if (exists(".story.filename.passed.to.shiny", where = sys.frame(1))){
   run.mode <- "x13story"  
+
+  # move to view() when x13story is on CRAN
+  if (!requireNamespace("x13story", quietly = TRUE)){  
+    stop("The 'x13story' package is needed to display stories.\n\n  devtools::install_github('christophsax/x13story')")
+  }
+
+  cat("Press ESC (or Ctrl-C) to get back to the R session\n")
+
 } else {
   run.mode <- "standalone"  
 }
@@ -87,7 +83,7 @@ for (i in 2:length(lFOpts)){
 # SPECS <- read.csv("ressources/speclist/table_web.csv", header = TRUE, stringsAsFactors = FALSE)
 # save(SPECS, file = "~/seasweb/specs.rdata")
 
-# 2016-11-28: Not clear why we are not using: data(specs)
+# upper part of iSeries 
 load(file = file.path(wd, "specs.rdata"))
 
 lSeries <- list()
@@ -105,10 +101,11 @@ for (spi in sp){
 }
 
 ### add rarely used views
-data(specs)
+# lowser part of iSeries 
+data(specs, package = "seasonal")
 
 # views already there
-pres <- c(unname(unlist(lSeries)), "forecast.backcasts")
+pres <- unname(unlist(lSeries))
 
 sp <- c(sp, "rarely used views")
 ruv <- SPECS[SPECS$is.save & SPECS$is.series, ]$long
@@ -122,24 +119,17 @@ lSeries$`RARELY USED VIEWS` <- ruv
 # --- Initial model / story ----------------------------------------------------
 
 if (run.mode == "seasonal"){
-  init.model <- .GlobalEnv$.model.passed.to.shiny
+  init.model <- get(".model.passed.to.shiny", envir = sys.frame(1))
   init.story <- NULL
 
 } else if (run.mode == "x13story"){
   # loading the already evaluated init.model saves 1/4 sec.
   load("init.model.rdata")
-
   # init.model <- seas(AirPassengers)
   # save(init.model, file = "init.model.rdata")
 
-  
-
-  init.story <- .story.passed.to.shiny
-  # # so we can run it as 'app', too, outside of inspect
-  # if (!exists("init.story")){
-  #   story.file <- system.file(package = "x13story", "stories", "x11.Rmd")
-  #   init.story <- x13story::parse_x13story(file = story.file)
-  # }
+  story <- get(".story.filename.passed.to.shiny", envir = sys.frame(1))
+  init.story <- x13story::parse_x13story(file = story)
 
 } else {
   # loading the already evaluated init.model saves 1/4 sec.
@@ -150,13 +140,9 @@ if (run.mode == "seasonal"){
 init.model <- seasonalview:::upd_seas(init.model, series = "main")
 
 
-
-
 # --- Static HTML --------------------------------------------------------------
 
-
-
-html.modal <- HTML('
+html.modal <- shiny::HTML('
   <div class="modal fade" id="updown-modal" role="dialog" tabindex="-1" aria-labelledby="demo-default-modal" aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -216,28 +202,28 @@ html.modal <- HTML('
   </div>
 ')
 
-html.logo <- tags$span(class="logo", tags$b(style = "padding-right: 3px;", "SEASONAL"), tags$small("X-13ARIMA-SEATS"))
+html.logo <- shiny::tags$span(class="logo", shiny::tags$b(style = "padding-right: 3px;", "SEASONAL"), shiny::tags$small("X-13ARIMA-SEATS"))
 
 if (run.mode == "seasonal"){
-  html.header <- tags$header(class="main-header",
+  html.header <- shiny::tags$header(class="main-header",
     html.logo,
-    tags$nav(class="navbar navbar-static-top", role="navigation",
-      tags$span(style="display:none;",
-        tags$i(class="fa fa-bars")
+    shiny::tags$nav(class="navbar navbar-static-top", role="navigation",
+      shiny::tags$span(style="display:none;",
+        shiny::tags$i(class="fa fa-bars")
       ),
-      tags$a(href="#", class="sidebar-toggle", `data-toggle`="offcanvas", role="button",
-        tags$span(class="sr-only", "Toggle navigation")
+      shiny::tags$a(href="#", class="sidebar-toggle", `data-toggle`="offcanvas", role="button",
+        shiny::tags$span(class="sr-only", "Toggle navigation")
       ),
-      tags$div(class="navbar-custom-menu", 
-        tags$ul(class="nav navbar-nav",
-          tags$li(tags$button(id="iOutput", href="#", type="button", style = "margin-right: 10px !important;", 
+      shiny::tags$div(class="navbar-custom-menu", 
+        shiny::tags$ul(class="nav navbar-nav",
+          shiny::tags$li(shiny::tags$button(id="iOutput", href="#", type="button", style = "margin-right: 10px !important;", 
                          class="btn btn-default btn action-button btn-navbar",
-                    tags$i(class="fa fa-file-text-o", style = "padding-right: 6px;"), " X-13 Output"
+                    shiny::tags$i(class="fa fa-file-text-o", style = "padding-right: 6px;"), " X-13 Output"
                   )
           ),
-          tags$li(tags$button(id="iReturn", href="#", type="button",
+          shiny::tags$li(shiny::tags$button(id="iReturn", href="#", type="button",
                          class="btn btn-warning btn action-button btn-navbar",
-                    tags$i(class="fa fa-sign-out", style = "padding-right: 6px;"), "To Console"
+                    shiny::tags$i(class="fa fa-sign-out", style = "padding-right: 6px;"), "To Console"
                   )
           )
         )
@@ -245,24 +231,23 @@ if (run.mode == "seasonal"){
     )
   ) 
 }
-
 
 
 if (run.mode == "x13story"){
-  html.header <- tags$header(class="main-header",
+  html.header <- shiny::tags$header(class="main-header",
     html.logo,
-    tags$nav(class="navbar navbar-static-top", role="navigation",
-      tags$span(style="display:none;",
-        tags$i(class="fa fa-bars")
+    shiny::tags$nav(class="navbar navbar-static-top", role="navigation",
+      shiny::tags$span(style="display:none;",
+        shiny::tags$i(class="fa fa-bars")
       ),
-      tags$a(href="#", class="sidebar-toggle", `data-toggle`="offcanvas", role="button",
-        tags$span(class="sr-only", "Toggle navigation")
+      shiny::tags$a(href="#", class="sidebar-toggle", `data-toggle`="offcanvas", role="button",
+        shiny::tags$span(class="sr-only", "Toggle navigation")
       ),
-      tags$div(class="navbar-custom-menu", 
-        tags$ul(class="nav navbar-nav",
-          tags$li(tags$button(id="iOutput", href="#", type="button", 
+      shiny::tags$div(class="navbar-custom-menu", 
+        shiny::tags$ul(class="nav navbar-nav",
+          shiny::tags$li(shiny::tags$button(id="iOutput", href="#", type="button", 
                          class="btn btn-default btn action-button btn-navbar",
-                    tags$i(class="fa fa-file-text-o", style = "padding-right: 6px;"), " X-13 Output"
+                    shiny::tags$i(class="fa fa-file-text-o", style = "padding-right: 6px;"), " X-13 Output"
                   )
           )
         )
@@ -270,59 +255,56 @@ if (run.mode == "x13story"){
     )
   ) 
 }
-
-
 
 
 # example menu entries
 html_li_example <- function(id, title, body, icon, freq){
-  tags$li(
-          tags$a(class = "shiny-id-el", href="#", id = id,
-            tags$i(class=paste("fa fa-fw", icon)),
-            tags$h4(
+  shiny::tags$li(
+          shiny::tags$a(class = "shiny-id-el", href="#", id = id,
+            shiny::tags$i(class=paste("fa fa-fw", icon)),
+            shiny::tags$h4(
               title#,
-              # tags$small(
-              #   tags$i(class=paste("fa", "fa-clock-o")),
+              # shiny::tags$small(
+              #   shiny::tags$i(class=paste("fa", "fa-clock-o")),
               #   freq
               # )
             ),
-            tags$p(body)
+            shiny::tags$p(body)
           )
         )
 }
 
 
-
 if (run.mode == "standalone"){
-  html.header <- tags$header(class="main-header",
+  html.header <- shiny::tags$header(class="main-header",
     html.logo,
-    tags$nav(class="navbar navbar-static-top", role="navigation",
-      tags$span(style="display:none;",
-        tags$i(class="fa fa-bars")
+    shiny::tags$nav(class="navbar navbar-static-top", role="navigation",
+      shiny::tags$span(style="display:none;",
+        shiny::tags$i(class="fa fa-bars")
       ),
-      tags$a(href="#", class="sidebar-toggle", `data-toggle`="offcanvas", role="button",
-        tags$span(class="sr-only", "Toggle navigation")
+      shiny::tags$a(href="#", class="sidebar-toggle", `data-toggle`="offcanvas", role="button",
+        shiny::tags$span(class="sr-only", "Toggle navigation")
       ),
-      tags$div(class="navbar-custom-menu", 
-        tags$ul(class="nav navbar-nav",
+      shiny::tags$div(class="navbar-custom-menu", 
+        shiny::tags$ul(class="nav navbar-nav",
           if (on.website){
-            HTML('<li><a href="http://www.seasonal.website"><strong>Workbench</strong></a></li>
+            shiny::HTML('<li><a href="http://www.seasonal.website"><strong>Workbench</strong></a></li>
            <li><a href="seasonal.html">Introduction</a></li>
            <li style=""><a href="examples.html">Examples</a></li>')
           } else {
             NULL
           },
           # Exampe Menu
-          tags$li(class="dropdown messages-menu",
-            tags$a(href="#", class="dropdown-toggle", `data-toggle`="dropdown", 
+          shiny::tags$li(class="dropdown messages-menu",
+            shiny::tags$a(href="#", class="dropdown-toggle", `data-toggle`="dropdown", 
                    style = "border-right: 1px solid #eee; margin-right: 10px;",
-              tags$i(class="fa fa-line-chart"),
-              tags$span(class="label label-danger", "4")
+              shiny::tags$i(class="fa fa-line-chart"),
+              shiny::tags$span(class="label label-danger", "4")
             ),
-            tags$ul(id = "iExample", class="shiny-id-callback dropdown-menu",
-              tags$li(class="header", "Example data series"), 
-              tags$li(style="position: relative; overflow: hidden; width: auto; height: 200px;",
-                tags$ul(class="menu",
+            shiny::tags$ul(id = "iExample", class="shiny-id-callback dropdown-menu",
+              shiny::tags$li(class="header", "Example data series"), 
+              shiny::tags$li(style="position: relative; overflow: hidden; width: auto; height: 200px;",
+                shiny::tags$ul(class="menu",
 
                   html_li_example(id = "AirPassengers", 
                                   title = "Airline Passengers", 
@@ -351,13 +333,11 @@ if (run.mode == "standalone"){
               )
             )
           ),
-
-
-          tags$li(tags$button(`data-target` = "#updown-modal",
+          shiny::tags$li(shiny::tags$button(`data-target` = "#updown-modal",
                               `data-toggle` = "modal", type="button", 
                               style = "margin-right: 10px !important;", 
                               class="btn btn-success btn btn-navbar",
-                              tags$i(class="fa fa-database", style = "padding-right: 6px;"), "Up-/Download"
+                              shiny::tags$i(class="fa fa-database", style = "padding-right: 6px;"), "Up-/Download"
                              )
                  )
         )

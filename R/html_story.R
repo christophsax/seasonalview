@@ -1,54 +1,9 @@
-
-# html_menu_li <- function(e, id){
-#   title <- attr(e, "yaml")$title
-#   subtitle <- attr(e, "yaml")$subtitle
-#   icon <- attr(e, "yaml")$icon
-
-#   if (is.null(icon)) icon <- "fa-road"
-#   if (is.null(subtitle)) subtitle <- "Add a subtitle to your YAML header"
-#   if (is.null(title)) title <- "Add a title to your YAML header"
-
-#   tags$li(
-#     tags$a(id = id, href="#", class="media shiny-id-el shiny-force",
-#       tags$div(class="media-left", 
-#         tags$span(class="icon-wrap bg-danger",
-#           tags$i(class="fa fa-calendar fa-lg")
-#         )
-#       ),
-#       tags$div(class="media-body", 
-#         tags$div(class="text-nowrap", title),
-#         tags$small(class="text-muted", subtitle)
-#       )
-#     )
-#   )
-# }                           
-
-
-# HTMLMenu <- function(STORIES){
-#   # tags$p("dsfsdfsd")
-  
-#   tagList(
-#     tags$div(id="iSelectorFeedback", class="shiny-id-callback",
-#       tags$ul(class = "head-list", 
-#         tagList(
-#         Map(html_menu_li, e = STORIES, id = names(STORIES))
-#         )
-#       )
-#     ),
-#     tags$script('
-#           $(".shiny-id-el").click(function() {
-#                 $(".shiny-id-el").removeClass("active");
-#                 $(this).addClass("active");
-#               });
-#       '
-#     )
-#   )
-# }
-
-
 html_storyview <- function(view, title = "My Story"){
 
-  # if first or last, buttons are disabled
+  shinydashboard::box()  # to not let CRAN test complain about unused imports
+
+
+  # if first or last, buttons are disabled
   p.button <- tags$button(id = "prev", class = "btn btn-sm btn-primary shiny-id-el", type = "button", 
                           tags$i(class = "fa fa-angle-left", style = "margin-right: 2px;"), 
                           "Prev")

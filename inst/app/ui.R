@@ -1,67 +1,50 @@
-library(shiny)
-library(shinydashboard)
-library(dygraphs)
-
-
-
-
-dashboardPage(
-
-
-  html.header
-
-  ,
-  dashboardSidebar(
-    disable = TRUE
-  ),
-  dashboardBody(
-    tags$head(
-      tags$link(rel = "stylesheet", type = "text/css", href = "docs.css"),
-      tags$script(src = "shinyIDCallback.js")
+shinydashboard::dashboardPage(
+  html.header,
+  shinydashboard::dashboardSidebar(disable = TRUE),
+  shinydashboard::dashboardBody(
+    shiny::tags$head(
+      shiny::tags$link(rel = "stylesheet", type = "text/css", href = "docs.css"),
+      shiny::tags$script(src = "shinyIDCallback.js")
     ),
 
-    fluidRow(
-      column(4,
+    shiny::fluidRow(
 
-
-        uiOutput("oStory"),
-        box(title = "Options", uiOutput("oFOpts"), width = NULL, 
+      shiny::column(4,
+        shiny::uiOutput("oStory"),
+        shinydashboard::box(title = "Options", uiOutput("oFOpts"), width = NULL, 
             collapsible = TRUE, collapsed = (run.mode == "x13story")),
-
-        tabBox(
-          # Title can include an icon
-          title = tagList(actionButton("iStatic", "Static", tags$i(class="fa fa-magic", style = "padding-right: 6px;"), class = "btn", style = "margin-right: 4px; margin-bottom: 3px;"), 
-                          actionButton("iEvalCall", "Run Call", class = "btn btn-primary", tags$i(class="fa fa-play-circle-o", style = "padding-right: 6px;"), style = "color: #fff; margin-bottom: 3px; margin-right: -3px;")
+        shinydashboard::tabBox(
+          title = shiny::tagList(shiny::actionButton("iStatic", "Static", shiny::tags$i(class="fa fa-magic", style = "padding-right: 6px;"), class = "btn", style = "margin-right: 4px; margin-bottom: 3px;"), 
+                          shiny::actionButton("iEvalCall", "Run Call", class = "btn btn-primary", shiny::tags$i(class="fa fa-play-circle-o", style = "padding-right: 6px;"), style = "color: #fff; margin-bottom: 3px; margin-right: -3px;")
                           ),
           id = "iActiveTerminal",
-          tabPanel("R",
-            uiOutput("oTerminal")
+          shiny::tabPanel("R",
+            shiny::uiOutput("oTerminal")
           ),
-          tabPanel("X-13", 
-            uiOutput("oTerminalX13")
+          shiny::tabPanel("X-13", 
+            shiny::uiOutput("oTerminalX13")
           ), 
           width = NULL
         )
       ),
 
-      column(8,
-        # box(uiOutput("oViewSelect"), width = NULL),  
-
-        box(title = uiOutput("oViewSelect"), dygraphOutput("oMainPlot"), footer = uiOutput("oLabel"), width = NULL),
-        box(title = "Summary", 
-          fluidRow(
-            column(4, uiOutput("oSummaryCoefs")),
-            column(4, uiOutput("oSummaryStats")),
-            column(4, uiOutput("oSummaryTests"))
+      shiny::column(8,
+        shinydashboard::box(title = uiOutput("oViewSelect"), dygraphs::dygraphOutput("oMainPlot"), footer = shiny::uiOutput("oLabel"), width = NULL),
+        shinydashboard::box(title = "Summary", 
+          shiny::fluidRow(
+            shiny::column(4, shiny::uiOutput("oSummaryCoefs")),
+            shiny::column(4, shiny::uiOutput("oSummaryStats")),
+            shiny::column(4, shiny::uiOutput("oSummaryTests"))
           ), width = NULL
         )
       )
 
     ),
-    html.modal,
 
+    # additional stuff at the end
+    html.modal,
     # shinyIDCallback.js relies on this
-    HTML('
+    shiny::HTML('
     <script>
         $(".shiny-id-el").click(function() {
               $(".shiny-id-el").removeClass("active");
@@ -78,6 +61,4 @@ dashboardPage(
   ), 
   title = "seasonal: R interface to X-13ARIMA-SEATS",
   skin = "black"
-
-
 )

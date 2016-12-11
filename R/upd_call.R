@@ -1,12 +1,7 @@
-
 # m <- seas(AirPassengers, forecast.save = "forecasts")
-
 # x <- m$call
-
 # a <- upd_call(x, "estimate.armacmatrix")
-
 # upd_call(a, "forecast.forecasts")
-
 
 # this works but is a bit too strict. E.g. if we have another forecast.save
 # activated, it would overwrite it. If we want to use it in series(), this must
