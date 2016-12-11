@@ -38,12 +38,6 @@
 #' 
 #' @references Seasonal vignette with a more detailed description: 
 #'   \url{http://www.seasonal.website/seasonal.html}
-#'   
-#'   Comprehensive list of R examples from the X-13ARIMA-SEATS manual: 
-#'   \url{http://www.seasonal.website/examples.html}
-#'   
-#'   Official X-13ARIMA-SEATS manual: 
-#'   \url{https://www.census.gov/ts/x13as/docX13ASHTML.pdf}
 #' 
 #'   Development version of the x13story package: 
 #'   \url{https://github.com/christophsax/x13story}
