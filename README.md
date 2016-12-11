@@ -26,7 +26,9 @@ the current `inspect` function in
     m <- seas(AirPassengers)
     view(m)
 
-![seasonal](https://raw.githubusercontent.com/christophsax/seasonalview/master/img/seasonal.png)
+<img src="https://raw.githubusercontent.com/christophsax/seasonalview/master/img/seasonal.png" width="50%" align="center"/>
+
+
 
 
 ### X-13 Story
