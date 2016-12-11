@@ -1,7 +1,7 @@
 #' Interactively Modify a Seasonal Adjustment Model
 #' 
 #' Interactively modify a \code{"seas"} object. The goal of \code{view} is 
-#' to summarize all relevant options, plots and statistics when evaluating at a 
+#' to summarize all relevant options, plots and statistics of a 
 #' seasonal adjustment model.
 #' 
 #' Frequently used options can be modified using the drop down selectors in the
@@ -30,7 +30,7 @@
 #' can be manipulated interactively.
 #' 
 #' @param x an object of class \code{"seas"}. 
-#' @param story character, local or URL path to an \code{".Rmd"} file. 
+#' @param story character, local file path or URL to an \code{".Rmd"} file. 
 #' @param quiet logical, if \code{TRUE} (default), error messages from calls in 
 #'   \code{view} are not shown in the console.
 #' @param ... arguments passed to \code{\link[shiny]{runApp}}. E.g, for selecting 
@@ -42,8 +42,8 @@
 #'   Development version of the x13story package: 
 #'   \url{https://github.com/christophsax/x13story}
 #' 
-#' @return an object of class \code{"seas"}, the modified model. Or \code{NULL}, 
-#'   if the \code{story} argument is supplied.
+#' @return \code{view} returns an object of class \code{"seas"}, the modified 
+#' model; or \code{NULL}, if the \code{story} argument is supplied.
 #'
 #' @examples
 #' \dontrun{
@@ -51,7 +51,8 @@
 #' m <- seas(AirPassengers)
 #' view(m)
 #' 
-#' m.new <- view(m)  # save the model after closing the GUI
+#' # store the model after closing the GUI, for further processing in R
+#' m.upd <- view(m)  
 #' }
 #' @export
 #' @importFrom xtable xtable

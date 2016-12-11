@@ -9,7 +9,7 @@ view(x = NULL, story = NULL, quiet = TRUE, ...)
 \arguments{
 \item{x}{an object of class \code{"seas"}.}
 
-\item{story}{character, local or URL path to an \code{".Rmd"} file.}
+\item{story}{character, local file path or URL to an \code{".Rmd"} file.}
 
 \item{quiet}{logical, if \code{TRUE} (default), error messages from calls in 
 \code{view} are not shown in the console.}
@@ -18,12 +18,12 @@ view(x = NULL, story = NULL, quiet = TRUE, ...)
 if the GUI should open in the browser or in the RStudio viewer pane.}
 }
 \value{
-an object of class \code{"seas"}, the modified model. Or \code{NULL}, 
-  if the \code{story} argument is supplied.
+\code{view} returns an object of class \code{"seas"}, the modified 
+model; or \code{NULL}, if the \code{story} argument is supplied.
 }
 \description{
 Interactively modify a \code{"seas"} object. The goal of \code{view} is 
-to summarize all relevant options, plots and statistics when evaluating at a 
+to summarize all relevant options, plots and statistics of a 
 seasonal adjustment model.
 }
 \details{
@@ -58,7 +58,8 @@ can be manipulated interactively.
 m <- seas(AirPassengers)
 view(m)
 
-m.new <- view(m)  # save the model after closing the GUI
+# store the model after closing the GUI, for further processing in R
+m.upd <- view(m)  
 }
 }
 \references{
