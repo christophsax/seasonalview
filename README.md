@@ -38,7 +38,7 @@ manipulated interactively.
 
     view(story = system.file(package = "x13story", "stories", "x11.Rmd"))
 
-![x13story](https://raw.githubusercontent.com/christophsax/seasonalview/master/img/x13story.png)
+<img src="https://raw.githubusercontent.com/christophsax/seasonalview/master/img/x13story.png" width="70%"/>
 
 
 ### Stand-alone
@@ -50,7 +50,7 @@ showcases how a local version of
 
     standalone()
 
-![standalone](https://raw.githubusercontent.com/christophsax/seasonalview/master/img/standalone.png)
+<img src="https://raw.githubusercontent.com/christophsax/seasonalview/master/img/standalone.png" width="70%"/>
 
 
 ### License and Credits
