@@ -8,11 +8,8 @@ interfaces from the [seasonal](https://cran.r-project.org/package=seasonal) and
 adjustment tool on [www.seasonal.website](http://www.seasonal.website).
 
 These interfaces have grown over time and have become difficult to maintain. The
-**seasonalview** package is an attempt to unify their code base. It  takes the
-best from each interface, and makes it available to the others. In a way, this
-is a summary of what I learned about
-[shiny](https://cran.r-project.org/package=shiny) and web development over the
-last few years.
+**seasonalview** package is an attempt to unify their code base. It takes the
+best from each interface, and makes it available to the others. 
 
 To install this early version of the package, use:
 
@@ -59,7 +56,7 @@ showcases how a local version of
 ### License and Credits
 
 **seasonalview** is free and open source, licensed under GPL-3. It is built on
-top of a large number of fantastic open source tools. It uses
+top of a large number of great open source tools. It uses
 [shiny](https://cran.r-project.org/package=shiny) and
 [shinydashboard](https://cran.r-project.org/package=shinydashboard), through
 which it accesses [jQuery](https://jquery.com),
