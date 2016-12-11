@@ -1,7 +1,4 @@
-
-
 shinyServer(function(input, output, session) {
-
 
 # --- initialisazion -----------------------------------------------------------
 
@@ -109,7 +106,6 @@ observe({
  })
 
 
-
 # --- consequences of rModel update --------------------------------------------
 
 # plot
@@ -130,13 +126,9 @@ output$oMainPlot <- renderDygraph({
 output$oViewSelect <- renderUI({
   m <- rModel$seas
   cc <- lSeries
-  if (seasonalview:::adj_method(m) == "x11"){
-    # cc$FORECAST <- c(cc$FORECAST, "Backcasts" = "forecast.backcasts")
-  } 
   a <- selectInput("iSeries", NULL, choices = cc, selected = m$series.view, width = "240px")
   return(a)
 })
-
 
 # selectors updated by rModel
 output$oFOpts <- renderUI({
@@ -174,22 +166,16 @@ output$oFOpts <- renderUI({
     selectInput("iTd", "Trading Days", choices = lFOpts2$td, selected = fopts$td, width = '100%')    )
 })
 
-
-
-# # summary
+# summary
 output$oSummaryCoefs <- renderUI({
   HTML(seasonalview:::html_coefs(rModel$seas))
 })
-
 output$oSummaryStats <- renderUI({
   HTML(seasonalview:::html_stats(rModel$seas))
 })
-
 output$oSummaryTests <- renderUI({
   HTML(seasonalview:::html_tests(rModel$seas))
 })
-
-
 
 # terminal
 output$oTerminal <- renderUI({
@@ -231,7 +217,6 @@ output$oTerminalX13 <- renderUI({
 })
 
 
-
 # --- stories ------------------------------------------------------------------
 
 # show dom only if code is present
@@ -246,7 +231,6 @@ output$oStory <- shiny::renderUI({
   }
 })
 
-
 # to avoid infinite loop cause by repeated clicks on 'next'
 observe({
   iStoryFeedback <- input$iStoryFeedback[1]
@@ -258,7 +242,6 @@ observe({
     rStoryFeedback$timestamp <- Sys.time()
   }
 })
-
 
 # remove story DOM on close
 observe({
@@ -288,8 +271,6 @@ observe({
 # update rStory by Next and Prev
 observe({
   sfb <- rStoryFeedback$click[1]
-
-
   p <- isolate(rStory$view.no)
   pp <- length(isolate(rStory$story))
 
@@ -328,7 +309,6 @@ observe({
 })
 
 
-
 # --- errrors -----------------------------------------------------------------
 
 # show error msg on error
@@ -346,7 +326,6 @@ observe({
    removeNotification(error.id)
   })
 
-
 # click on iRevert does a pseudo-manipulation of the last working model and thus
 # triggers an update (but no run of X-13)
 observe({ 
@@ -359,6 +338,7 @@ observe({
     }
   }
 })
+
 
 # --- close and return ---------------------------------------------------------
 
@@ -381,7 +361,6 @@ if (run.mode %in% c("seasonal", "x13story")){
   })
 }
 
-
 shiny::observe({
   if (input$iStatic > 0){
     m <- shiny::isolate(rModel$seas)
@@ -401,8 +380,6 @@ shiny::observe({
     upd_or_fail(z)
   }
 })
-
-
 
 
 # --- upload and download ------------------------------------------------------
@@ -469,7 +446,6 @@ observe({
   }
 })
 
-
 observe({
   series.name <- input$iExample[1]
   m <- isolate(rModel$seas)
@@ -487,7 +463,5 @@ observe({
     upd_or_fail(z)
   }
 })
-
-
 
 })

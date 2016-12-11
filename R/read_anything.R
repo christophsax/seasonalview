@@ -87,8 +87,6 @@ read_anything <- function(file = "~/test.xlsx", type = NULL){
 }
 
 
-
-
 # Excel Date Format
 # 2014:3, 2014:4 ...
 

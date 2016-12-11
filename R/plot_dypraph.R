@@ -1,4 +1,3 @@
-
 plot_dygraph <- function(m, series = "main"){
   ser <- series0(m, series, reeval = FALSE)
   if(!inherits(ser, "xts")){

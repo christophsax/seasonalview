@@ -1,13 +1,3 @@
-
-pc <- function(x){
-  z <- diff(x) / lag(x, -1)
-  if (inherits(z, "mts")){
-    colnames(z) <- paste(colnames(x), "(%)")
-  }
-  z
-}
-
-
 # like series, but also handles
 # c("main", "mainpc"), c("irregular", "seasonal", "trend")
 # as they are returned by the series selector
@@ -53,3 +43,12 @@ series0 <- function(m, series, reeval = TRUE, data.frame = FALSE){
   }
   z
 }
+
+pc <- function(x){
+  z <- diff(x) / lag(x, -1)
+  if (inherits(z, "mts")){
+    colnames(z) <- paste(colnames(x), "(%)")
+  }
+  z
+}
+

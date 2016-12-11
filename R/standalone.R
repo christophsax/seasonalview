@@ -1,11 +1,10 @@
 #' Stand Alone Seasonal Web-Application 
 #' 
 #' Previews a stand alone web application for seasonal adjustment, whith the
-#' same look as \url{www.seasonal.website}. Allows importing and exporting of 
-#' data via the 'Up-/Download' button.
+#' same look and feel as \url{www.seasonal.website}. Allows import and export of
+#' data via an 'Up-/Download' button.
 #' 
-#' @seealso \code{\link{view}} for an interactive GUI that imports and exports
-#'   from the R console.
+#' @seealso \code{\link{view}} to interactively modify a \code{"seas"} object. 
 #'
 #' @export
 #' @examples 

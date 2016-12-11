@@ -123,11 +123,6 @@ get_fopts <- function(x){
   z
 }
 
-#' @import seasonal
-#' @import stats
-#' @import dygraphs
-#' @import xtable
-#' @import utils
 add_fopts <- function(x, FOpts){
 
   # call in which all arguments are specified by their full names
@@ -141,7 +136,6 @@ add_fopts <- function(x, FOpts){
   if (is.null(FOpts$td)) FOpts$td <- "user"
 
   if (FOpts$method == "X11"){
-    # browser()
     lc$x11 <- ""
     lc <- lc[!grepl("^seats\\.", names(lc))]
   } else if (FOpts$method == "SEATS"){

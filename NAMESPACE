@@ -2,11 +2,6 @@
 
 export(standalone)
 export(view)
-import(dygraphs)
-import(seasonal)
-import(stats)
-import(utils)
-import(xtable)
 importFrom(dygraphs,dyAnnotation)
 importFrom(dygraphs,dyLegend)
 importFrom(dygraphs,dyOptions)

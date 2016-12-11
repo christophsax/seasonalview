@@ -17,13 +17,18 @@ data(seasonal)
 # 2. x13-story  where it works on an .Rmd file, to render stories
 # 3. stand-alone, with upload and download buttons
 
-# browser()
-
-# get(".model.passed.to.shiny", envir = sys.frame(1))
 if (exists(".model.passed.to.shiny", where = sys.frame(1))){
   run.mode <- "seasonal"  
-} else if (exists(".story.passed.to.shiny", where = sys.frame(1))){
+} else if (exists(".story.filename.passed.to.shiny", where = sys.frame(1))){
   run.mode <- "x13story"  
+
+  # move to view() when x13story is on CRAN
+  if (!requireNamespace("x13story", quietly = TRUE)){  
+    stop("The 'x13story' package is needed to display stories.\n\n  devtools::install_github('christophsax/x13story')")
+  }
+
+  cat("Press ESC (or Ctrl-C) to get back to the R session\n")
+
 } else {
   run.mode <- "standalone"  
 }
@@ -89,7 +94,7 @@ for (i in 2:length(lFOpts)){
 # SPECS <- read.csv("ressources/speclist/table_web.csv", header = TRUE, stringsAsFactors = FALSE)
 # save(SPECS, file = "~/seasweb/specs.rdata")
 
-# 2016-11-28: Not clear why we are not using: data(specs)
+# upper part of iSeries 
 load(file = file.path(wd, "specs.rdata"))
 
 lSeries <- list()
@@ -107,10 +112,11 @@ for (spi in sp){
 }
 
 ### add rarely used views
+# lowser part of iSeries 
 data(specs)
 
 # views already there
-pres <- c(unname(unlist(lSeries)), "forecast.backcasts")
+pres <- unname(unlist(lSeries))
 
 sp <- c(sp, "rarely used views")
 ruv <- SPECS[SPECS$is.save & SPECS$is.series, ]$long
@@ -120,11 +126,11 @@ class(ruv)
 names(ruv) <- ruv
 lSeries$`RARELY USED VIEWS` <- ruv
 
+
 # --- Initial model / story ----------------------------------------------------
 
 if (run.mode == "seasonal"){
   init.model <- get(".model.passed.to.shiny", envir = sys.frame(1))
-  # init.model <- .GlobalEnv$.model.passed.to.shiny
   init.story <- NULL
 
 } else if (run.mode == "x13story"){
@@ -133,14 +139,8 @@ if (run.mode == "seasonal"){
   # init.model <- seas(AirPassengers)
   # save(init.model, file = "init.model.rdata")
 
-  init.story <- get(".story.passed.to.shiny", enivr = sys.frame(1))
-
-  # init.story <- .story.passed.to.shiny
-  # # so we can run it as 'app', too, outside of inspect
-  # if (!exists("init.story")){
-  #   story.file <- system.file(package = "x13story", "stories", "x11.Rmd")
-  #   init.story <- x13story::parse_x13story(file = story.file)
-  # }
+  story <- get(".story.filename.passed.to.shiny", envir = sys.frame(1))
+  init.story <- x13story::parse_x13story(file = story)
 
 } else {
   # loading the already evaluated init.model saves 1/4 sec.
@@ -151,11 +151,7 @@ if (run.mode == "seasonal"){
 init.model <- seasonalview:::upd_seas(init.model, series = "main")
 
 
-
-
 # --- Static HTML --------------------------------------------------------------
-
-
 
 html.modal <- HTML('
   <div class="modal fade" id="updown-modal" role="dialog" tabindex="-1" aria-labelledby="demo-default-modal" aria-hidden="true" style="display: none;">
@@ -248,7 +244,6 @@ if (run.mode == "seasonal"){
 }
 
 
-
 if (run.mode == "x13story"){
   html.header <- tags$header(class="main-header",
     html.logo,
@@ -273,8 +268,6 @@ if (run.mode == "x13story"){
 }
 
 
-
-
 # example menu entries
 html_li_example <- function(id, title, body, icon, freq){
   tags$li(
@@ -291,7 +284,6 @@ html_li_example <- function(id, title, body, icon, freq){
           )
         )
 }
-
 
 
 if (run.mode == "standalone"){
