@@ -1,7 +1,7 @@
 #' Stand Alone Seasonal Web-Application 
 #' 
 #' Previews a stand alone web application for seasonal adjustment, whith the
-#' same look and feel as \url{www.seasonal.website}. Allows import and export of
+#' same look and feel as \url{http://www.seasonal.website}. Allows import and export of
 #' data via an 'Up-/Download' button.
 #' 
 #' @seealso \code{\link{view}} to interactively modify a \code{"seas"} object. 

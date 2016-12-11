@@ -5,36 +5,36 @@
 #' seasonal adjustment model.
 #' 
 #' Frequently used options can be modified using the drop down selectors in the
-#' upper left window. Each change will result in a re-estimation of the seasonal
+#' upper left box. Each change will result in a re-estimation of the seasonal
 #' adjustment model. The R-call, the X-13 call, the graphical output and the 
 #' summary are updated accordingly.
 #'
-#' Alternatively, the R call can be modified manually in the lower left window.
-#' Press 'Run Call' to re-estimate the model and to adjust the option selectors,
-#' the graphical output, and the summary. With the 'To console' button, view is 
-#' closed and the call is imported to R. The 'Static' button substitutes 
-#' automatic procedures by the automatically chosen 
-#' spec-argument options, in the same way as \code{\link{static}}.
+#' Alternatively, the R call can be modified manually in the lower left box.
+#' Click 'Run Call' to re-estimate the model and to adjust the option selectors,
+#' the graphical output, and the summary. With the 'To console' button, 
+#' the GUI is closed and the call is imported to R. The 'Static' button
+#' substitutes automatic procedures by the automatically chosen 
+#' spec-argument options, in the same way as the \code{\link{static}} function 
+#' from the seasonal package.
 #'
 #' If you are familiar with the X-13 spec syntax, you can modify the X-13 call,
 #' with the same consequences as when modifying the R call.
 #'
-#' The lower right panel shows the a summary, as described in the help page of
+#' The lower right panel shows the summary, as described in the help page of
 #' \code{\link{summary.seas}}. The 'X-13 output' button opens the complete 
 #' output of X-13 in a separate tab or window.
 #' 
-#' An experimental mode allows the exploration of interactive stories on 
-#' seasonal adjustment. This requires the x13story package to be installed, 
-#' which is not yet on CRAN. See references.
+#' If you have the x13story package installed (not yet on CRAN, see references), 
+#' you can call the function with the \code{story} argument. This will render 
+#' an R Markdown document and produce a \emph{story} on seasonal adjustment that 
+#' can be manipulated interactively.
 #' 
 #' @param x an object of class \code{"seas"}. 
-#' @param story character, path to an \code{".Rmd"} file. Can be also an URL on 
-#'   the Internet.
+#' @param story character, local or URL path to an \code{".Rmd"} file. 
 #' @param quiet logical, if \code{TRUE} (default), error messages from calls in 
 #'   \code{view} are not shown in the console.
-#' @param ... arguments passed to \code{\link[shiny]{runApp}}. E.g, for choosing 
-#'   it the GUI should open in the Browser or in the RStudio viewer pane (if you 
-#'   are using RStudio).
+#' @param ... arguments passed to \code{\link[shiny]{runApp}}. E.g, for selecting 
+#'   if the GUI should open in the browser or in the RStudio viewer pane.
 #' 
 #' @references Seasonal vignette with a more detailed description: 
 #'   \url{http://www.seasonal.website/seasonal.html}
@@ -43,7 +43,7 @@
 #'   \url{https://github.com/christophsax/x13story}
 #' 
 #' @return an object of class \code{"seas"}, the modified model. Or \code{NULL}, 
-#'   if the \code{story} argument has been supplied.
+#'   if the \code{story} argument is supplied.
 #'
 #' @examples
 #' \dontrun{

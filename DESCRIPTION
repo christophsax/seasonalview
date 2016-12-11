@@ -1,14 +1,14 @@
 Package: seasonalview
 Type: Package
 Title: Graphical User Interface for Seasonal Adjustment
-Version: 0.0.1.2
+Version: 0.0.1.3
 Date: 2016-12-11
 Author: Christoph Sax
 Maintainer: Christoph Sax <christoph.sax@gmail.com>
-Description: A graphical graphical user interface to seasonal and 
+Description: A graphical graphical user interface to the seasonal package and 
   X-13ARIMA-SEATS, the U.S. Census Buereau's seasonal adjustement software. The
-  seasonalview package unifies the code base of www.seasonal.website with the GUI
-  in the seasonal, to make it available via R.
+  seasonalview package unifies the code base of www.seasonal.website and the GUI
+  in the seasonal package.
 Depends:
   seasonal (>= 1.3)
 Imports:

@@ -11,18 +11,18 @@ These interfaces have grown over time and have become difficult to maintain. The
 **seasonalview** package is an attempt to unify their code base. It takes the
 best from each interface, and makes it available to the others. 
 
-To install this early version of the package, use:
+To install from GitHub, use:
 
     devtools::install_github("christophsax/seasonalview")
 
 
 ### Seasonal
 
-The main function of the package is the `view` function, which works exactly as
+The main function of the package is the `view` function, which works similar as
 the current `inspect` function in
 [seasonal](https://cran.r-project.org/package=seasonal). Here is an example:
 
-    library(seasonalview)  # this will also load seasonal
+    library(seasonalview)      # this will also attach seasonal
     m <- seas(AirPassengers)
     view(m)
 
