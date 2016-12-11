@@ -49,6 +49,9 @@
 #' @importFrom seasonal outlier
 #' @importFrom shiny tags tagList HTML
 view <- function(x = NULL, story = NULL, quiet = TRUE){ 
+
+  # passing.env <- new.env()
+
   if (!is.null(story)){
     if (!require(x13story)){
       stop("The 'x13story' package is needed to display stories.\n\n  devtools::install_github('christophsax/x13story')")
@@ -66,8 +69,8 @@ view <- function(x = NULL, story = NULL, quiet = TRUE){
     }
 
     story <- normalizePath(story)
-    .GlobalEnv$.story.passed.to.shiny <- x13story::parse_x13story(file = story)
-    on.exit(rm(.story.passed.to.shiny, envir=.GlobalEnv))
+
+    .story.passed.to.shiny <- x13story::parse_x13story(file = story)
 
     cat("Press ESC (or Ctrl-C) to get back to the R session\n")
 
@@ -81,8 +84,7 @@ view <- function(x = NULL, story = NULL, quiet = TRUE){
     stop("first argument must be of class 'seas'")
   }
 
-  .GlobalEnv$.model.passed.to.shiny <- x
-  on.exit(rm(.model.passed.to.shiny, envir = .GlobalEnv))
+  .model.passed.to.shiny <- x
 
   cat("Press ESC (or Ctrl-C) to get back to the R session\n")
 

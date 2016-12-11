@@ -17,10 +17,12 @@ data(seasonal)
 # 2. x13-story  where it works on an .Rmd file, to render stories
 # 3. stand-alone, with upload and download buttons
 
+# browser()
 
-if (exists(".model.passed.to.shiny", where = globalenv())){
+# get(".model.passed.to.shiny", envir = sys.frame(1))
+if (exists(".model.passed.to.shiny", where = sys.frame(1))){
   run.mode <- "seasonal"  
-} else if (exists(".story.passed.to.shiny", where = globalenv())){
+} else if (exists(".story.passed.to.shiny", where = sys.frame(1))){
   run.mode <- "x13story"  
 } else {
   run.mode <- "standalone"  
@@ -118,23 +120,22 @@ class(ruv)
 names(ruv) <- ruv
 lSeries$`RARELY USED VIEWS` <- ruv
 
-
 # --- Initial model / story ----------------------------------------------------
 
 if (run.mode == "seasonal"){
-  init.model <- .GlobalEnv$.model.passed.to.shiny
+  init.model <- get(".model.passed.to.shiny", envir = sys.frame(1))
+  # init.model <- .GlobalEnv$.model.passed.to.shiny
   init.story <- NULL
 
 } else if (run.mode == "x13story"){
   # loading the already evaluated init.model saves 1/4 sec.
   load("init.model.rdata")
-
   # init.model <- seas(AirPassengers)
   # save(init.model, file = "init.model.rdata")
 
-  
+  init.story <- get(".story.passed.to.shiny", enivr = sys.frame(1))
 
-  init.story <- .story.passed.to.shiny
+  # init.story <- .story.passed.to.shiny
   # # so we can run it as 'app', too, outside of inspect
   # if (!exists("init.story")){
   #   story.file <- system.file(package = "x13story", "stories", "x11.Rmd")
