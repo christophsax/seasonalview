@@ -126,7 +126,7 @@ get_fopts <- function(x){
 add_fopts <- function(x, FOpts){
 
   # call in which all arguments are specified by their full names
-  lc <- as.list(match.call(definition = seas, x$call))
+  lc <- as.list(match.call(definition = seasonal::seas, x$call))
 
   if (is.null(FOpts$method)) FOpts$method <- "user"
   if (is.null(FOpts$transform)) FOpts$transform <- "user"

@@ -5,7 +5,7 @@
 # returns xts or data.frame, with series name also for single series
 series0 <- function(m, series, reeval = TRUE, data.frame = FALSE){
   if (series %in% c("main", "mainpc")){
-    z0 <- cbind(original = original(m), adjusted = final(m))
+    z0 <- cbind(original = seasonal::original(m), adjusted = seasonal::final(m))
     if (series == "mainpc") z0 <- pc(z0)
   } else {
     if (series %in% c("irregular", "seasonal", "trend")){

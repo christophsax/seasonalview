@@ -4,7 +4,7 @@ format_seascall <- function(x){
     stop('format_seascall() can only be applied to calls of the seas()')
   }
   # call in which all arguments are specified by their full names
-  x <- match.call(definition = seas, x)
+  x <- match.call(definition = seasonal::seas, x)
   xl <- as.list(x)
   z <- list()
   for (i in 2:length(xl)){
