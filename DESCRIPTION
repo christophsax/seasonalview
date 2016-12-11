@@ -10,7 +10,7 @@ Description: A graphical graphical user interface to seasonal and
   seasonalview package unifies the code base of www.seasonal.website with the GUI
   in the seasonal, to make it available via R.
 Depends:
-  seasonal (>= 1.2)
+  seasonal (>= 1.3)
 Imports:
   shinydashboard (>= 0.5.3),
   shiny (>= 0.14),
