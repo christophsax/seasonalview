@@ -1,5 +1,8 @@
 html_storyview <- function(view, title = "My Story"){
 
+  shinydashboard::box()  # to not let CRAN test complain about unused imports
+
+
   # if first or last, buttons are disabled
   p.button <- tags$button(id = "prev", class = "btn btn-sm btn-primary shiny-id-el", type = "button", 
                           tags$i(class = "fa fa-angle-left", style = "margin-right: 2px;"), 
