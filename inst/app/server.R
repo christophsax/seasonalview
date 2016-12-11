@@ -29,8 +29,8 @@ upd_or_fail <- function(z){
 # --- URL ----------------------------------------------------------------------
 
 if (on.website){
-  qstr <- isolate(session$clientData$url_search)
-  ql <- parseQueryString(qstr)
+  qstr <- shiny::isolate(session$clientData$url_search)
+  ql <- shiny::parseQueryString(qstr)
   if (!is.null(ql$call)){
     txt <- ql$call
     call <- try(as.call(parse(text = txt)[[1]]))
@@ -47,21 +47,21 @@ if (on.website){
 # --- call updater -------------------------------------------------------------
 
 # triggered by view
-observe({
+shiny::observe({
   series <- input$iSeries
-  m <- isolate(rModel$seas)
+  m <- shiny::isolate(rModel$seas)
   z <- seasonalview:::upd_seas(m, series = series, senv = senv)
   upd_or_fail(z)
 })
 
 # triggered by r or x13 terminal
-observe({
+shiny::observe({
  if (input$iEvalCall > 0){
-    at <- isolate(input$iActiveTerminal)
-    m <- isolate(rModel$seas)
+    at <- shiny::isolate(input$iActiveTerminal)
+    m <- shiny::isolate(rModel$seas)
 
     if (at == "R"){
-      txt <- isolate(input$iTerminal)
+      txt <- shiny::isolate(input$iTerminal)
       call <- try(as.call(parse(text = txt)[[1]]))
       if (inherits(call, "try-error")){
         z <- call
@@ -69,7 +69,7 @@ observe({
         z <- seasonalview:::upd_seas(m, call = call, senv = senv)
       }
     } else if (at == "X-13"){
-      txt <- isolate(input$iTerminalX13)
+      txt <- shiny::isolate(input$iTerminalX13)
       call <- import.spc2(txt = txt)$seas
       if (inherits(call, "try-error")){
         z <- call
@@ -87,7 +87,7 @@ observe({
 })
 
 # triggered by selectors
-observe({ 
+shiny::observe({ 
   FOpts <- list()
   FOpts$method <- input$iMethod
   FOpts$transform <- input$iTransform
@@ -96,7 +96,7 @@ observe({
   FOpts$easter <- input$iEaster
   FOpts$td <- input$iTd
 
-  m <- isolate(rModel$seas)
+  m <- shiny::isolate(rModel$seas)
 
   if (length(FOpts) > 0 && !is.null(m)){
     call <- seasonalview:::add_fopts(m, FOpts)
@@ -109,7 +109,7 @@ observe({
 # --- consequences of rModel update --------------------------------------------
 
 # plot
-output$oMainPlot <- renderDygraph({
+output$oMainPlot <- dygraphs::renderDygraph({
 
   m <- rModel$seas
   # could even get view from m
@@ -123,15 +123,15 @@ output$oMainPlot <- renderDygraph({
 })
 
 # view selector (depends on adjustment method (x11/seats))
-output$oViewSelect <- renderUI({
+output$oViewSelect <- shiny::renderUI({
   m <- rModel$seas
   cc <- lSeries
-  a <- selectInput("iSeries", NULL, choices = cc, selected = m$series.view, width = "240px")
+  a <- shiny::selectInput("iSeries", NULL, choices = cc, selected = m$series.view, width = "240px")
   return(a)
 })
 
 # selectors updated by rModel
-output$oFOpts <- renderUI({
+output$oFOpts <- shiny::renderUI({
   m <- rModel$seas
 
   fopts <- seasonalview:::get_fopts(m)
@@ -158,33 +158,33 @@ output$oFOpts <- renderUI({
 
   lFOpts2$arima$MANUAL <- c(ll, lFOpts2$arima$MANUAL)
   list(
-    selectInput("iMethod", "Adjustment Method", choices = lFOpts2$method, selected = fopts$method, width = '100%'),
-    selectInput("iTransform", "Pre-Transformation", choices = lFOpts2$transform, selected = fopts$transform, width = '100%'),
-    selectInput("iArima", "Arima Model", choices = lFOpts2$arima, selected = fopts$arima, width = '100%'),
-    selectInput("iOutlier", "Outlier", choices = lFOpts2$outlier, selected = fopts$outlier, width = '100%'),
-    selectInput("iEaster", "Holiday", choices = lFOpts2$easter, selected = fopts$easter, width = '100%'),
-    selectInput("iTd", "Trading Days", choices = lFOpts2$td, selected = fopts$td, width = '100%')    )
+    shiny::selectInput("iMethod", "Adjustment Method", choices = lFOpts2$method, selected = fopts$method, width = '100%'),
+    shiny::selectInput("iTransform", "Pre-Transformation", choices = lFOpts2$transform, selected = fopts$transform, width = '100%'),
+    shiny::selectInput("iArima", "Arima Model", choices = lFOpts2$arima, selected = fopts$arima, width = '100%'),
+    shiny::selectInput("iOutlier", "Outlier", choices = lFOpts2$outlier, selected = fopts$outlier, width = '100%'),
+    shiny::selectInput("iEaster", "Holiday", choices = lFOpts2$easter, selected = fopts$easter, width = '100%'),
+    shiny::selectInput("iTd", "Trading Days", choices = lFOpts2$td, selected = fopts$td, width = '100%')    )
 })
 
 # summary
-output$oSummaryCoefs <- renderUI({
-  HTML(seasonalview:::html_coefs(rModel$seas))
+output$oSummaryCoefs <- shiny::renderUI({
+  shiny::HTML(seasonalview:::html_coefs(rModel$seas))
 })
-output$oSummaryStats <- renderUI({
-  HTML(seasonalview:::html_stats(rModel$seas))
+output$oSummaryStats <- shiny::renderUI({
+  shiny::HTML(seasonalview:::html_stats(rModel$seas))
 })
-output$oSummaryTests <- renderUI({
-  HTML(seasonalview:::html_tests(rModel$seas))
+output$oSummaryTests <- shiny::renderUI({
+  shiny::HTML(seasonalview:::html_tests(rModel$seas))
 })
 
 # terminal
-output$oTerminal <- renderUI({
+output$oTerminal <- shiny::renderUI({
   m <- rModel$seas
   cstr <- seasonalview:::format_seascall(m$call)
-  tagList(
-  tags$textarea(id="iTerminal", class="form-control", rows = 10, cols=60, cstr),
+  shiny::tagList(
+  shiny::tags$textarea(id="iTerminal", class="form-control", rows = 10, cols=60, cstr),
     # auto extending the textarea (a bit hacky)
-    HTML('
+    shiny::HTML('
     <script>
         $(document).ready(function(){
             $("#iTerminal").on("keyup keydown", function(){
@@ -198,12 +198,12 @@ output$oTerminal <- renderUI({
 })
 
 # x13terminal
-output$oTerminalX13 <- renderUI({
+output$oTerminalX13 <- shiny::renderUI({
   m <- rModel$seas
   cstr <- seasonal:::deparse_spclist(m$spc)
-  tagList(
-  tags$textarea(id="iTerminalX13", style = "min-height: 692px;", class="form-control", cols=60, cstr),
-      HTML('
+  shiny::tagList(
+  shiny::tags$textarea(id="iTerminalX13", style = "min-height: 692px;", class="form-control", cols=60, cstr),
+      shiny::HTML('
     <script>
         $(document).ready(function(){
             $("#iTerminalX13").on("keyup", function(){
@@ -232,19 +232,19 @@ output$oStory <- shiny::renderUI({
 })
 
 # to avoid infinite loop cause by repeated clicks on 'next'
-observe({
+shiny::observe({
   iStoryFeedback <- input$iStoryFeedback[1]
 
-# message((Sys.time() - isolate(rStoryFeedback$timestamp)) > 1)
+# message((Sys.time() - shiny::isolate(rStoryFeedback$timestamp)) > 1)
   # wait 0.5 sec to accept new input
-  if ((Sys.time() - isolate(rStoryFeedback$timestamp)) > 0.5){
+  if ((Sys.time() - shiny::isolate(rStoryFeedback$timestamp)) > 0.5){
     rStoryFeedback$click <- c(iStoryFeedback, rnorm(1))
     rStoryFeedback$timestamp <- Sys.time()
   }
 })
 
 # remove story DOM on close
-observe({
+shiny::observe({
   sfb <- rStoryFeedback$click[1]
 
   if (!is.null(sfb)){
@@ -257,7 +257,7 @@ observe({
 
 
 # update rStory by iSelectorFeedback
-observe({
+shiny::observe({
   sf <- input$iSelectorFeedback[1]
   if (!is.null(sf)){
     if (!sf %in% names(STORIES)){
@@ -269,10 +269,10 @@ observe({
 })
 
 # update rStory by Next and Prev
-observe({
+shiny::observe({
   sfb <- rStoryFeedback$click[1]
-  p <- isolate(rStory$view.no)
-  pp <- length(isolate(rStory$story))
+  p <- shiny::isolate(rStory$view.no)
+  pp <- length(shiny::isolate(rStory$story))
 
   if (!is.null(sfb)){
     if (sfb == "next"){
@@ -289,7 +289,7 @@ observe({
 })
 
 # update rModel by rStory
-observe({
+shiny::observe({
   # message("STORY UPD")
   story <- rStory$story
   view.no <- rStory$view.no
@@ -312,15 +312,15 @@ observe({
 # --- errrors -----------------------------------------------------------------
 
 # show error msg on error
-observe({
+shiny::observe({
   if (rError$msg == "") return(NULL)
   rawerr <- seasonal:::err_to_html(rError$msg)
-  irev <- HTML('<button id="iRevert" type="button" class="btn action-button btn-danger" style = "margin-right: 4px; margin-top: 10px;">Revert</button>')
-  error.id <<- showNotification(HTML(rawerr), action = irev, duration = NULL, type = "error")
+  irev <- shiny::HTML('<button id="iRevert" type="button" class="btn action-button btn-danger" style = "margin-right: 4px; margin-top: 10px;">Revert</button>')
+  error.id <<- shiny::showNotification(shiny::HTML(rawerr), action = irev, duration = NULL, type = "error")
 })
 
 # remove error msg if error is gone
-observe({
+shiny::observe({
    if (rError$msg != "") return(NULL)
    if (exists("error.id"))
    removeNotification(error.id)
@@ -328,10 +328,10 @@ observe({
 
 # click on iRevert does a pseudo-manipulation of the last working model and thus
 # triggers an update (but no run of X-13)
-observe({ 
+shiny::observe({ 
   if (!is.null(input$iRevert)){
     if (input$iRevert > 0){
-    m <- isolate(rModel$seas)
+    m <- shiny::isolate(rModel$seas)
     z <- seasonalview:::upd_seas(m, senv = senv)
     z$msg <- ""  
     upd_or_fail(z)
@@ -387,9 +387,9 @@ shiny::observe({
 output$oDownloadCsv <- downloadHandler(
   filename = "download.csv",
   content = function(file) {
-      m <- isolate(rModel$seas)
+      m <- shiny::isolate(rModel$seas)
       view <- m$series.view
-      dta <- series0(m, view, reeval = FALSE, data.frame = TRUE)
+      dta <- seasonalview:::series0(m, view, reeval = FALSE, data.frame = TRUE)
       write.csv(dta, file, row.names = FALSE)
   }, 
   contentType = "text/csv"
@@ -398,23 +398,22 @@ output$oDownloadCsv <- downloadHandler(
 output$oDownloadXlsx <- downloadHandler(
   filename = "download.xlsx",
   content = function(file) {
-      m <- isolate(rModel$seas)
+      m <- shiny::isolate(rModel$seas)
       view <- m$series.view
-      dta <- series0(m, view, reeval = FALSE, data.frame = TRUE)
-      library(openxlsx)
-      write.xlsx(dta, file)
+      dta <- seasonalview:::series0(m, view, reeval = FALSE, data.frame = TRUE)
+      openxlsx::write.xlsx(dta, file)
   }, 
   contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
 )
 
-observe({
+shiny::observe({
   upl <- input$iFile
-  m <- isolate(rModel$seas)
+  m <- shiny::isolate(rModel$seas)
 
   if (!is.null(upl)){
 
     uplMsg <- function(x, type = "error", duration = 15){
-      error.id <- showNotification(HTML(x), 
+      error.id <- shiny::showNotification(shiny::HTML(x), 
                                    action = NULL, duration = duration, 
                                    type = type, closeButton = TRUE)
     }
@@ -427,7 +426,7 @@ observe({
       uplMsg("<h4>Upload error</h4>File type must be either <strong>xlsx</strong> or <strong>csv</strong>.")
       return(NULL)
     } 
-    ser <- try(read_anything(file.path(upl$datapath), type))
+    ser <- try(seasonalview:::read_anything(file.path(upl$datapath), type))
     if (inherits(ser, "try-error")){
       uplMsg("<h4>Reading error</h4> <p>The file should have the <strong>time in the first</strong>, the <strong>data in the second</strong> column.<p><p> Several time formats are supported, including Excel time formats.</p> <p>If you need an <strong>example file</strong>, download one of the demo series; the file is also uploadable.</p>")
     } else {
@@ -446,9 +445,9 @@ observe({
   }
 })
 
-observe({
+shiny::observe({
   series.name <- input$iExample[1]
-  m <- isolate(rModel$seas)
+  m <- shiny::isolate(rModel$seas)
 
   if (!is.null(series.name)){
     call <- m$call

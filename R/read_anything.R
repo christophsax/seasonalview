@@ -9,7 +9,6 @@ read_anything <- function(file = "~/test.xlsx", type = NULL){
   }
 
   if (type == "xlsx"){
-    # library(openxlsx)
 
     df <- openxlsx::read.xlsx(file)
 

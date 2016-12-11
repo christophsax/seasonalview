@@ -60,13 +60,15 @@
 #' m.new <- view(m)  # save the model after closing the GUI
 #' }
 #' @export
-#' @importFrom xts as.xts
 #' @importFrom xtable xtable
-#' @importFrom utils read.csv
-#' @importFrom stats ts time Box.test shapiro.test symnum coef
+#' @importFrom utils read.csv data download.file
+#' @importFrom stats ts is.ts cycle time Box.test shapiro.test symnum coef lag
 #' @importFrom dygraphs dygraph dyAnnotation dyLegend dyOptions
 #' @importFrom seasonal outlier
 #' @importFrom shiny tags tagList HTML
+#' @importFrom xts as.xts
+#' @importFrom zoo as.yearmon as.yearqtr
+#' @importFrom openxlsx read.xlsx write.xlsx
 view <- function(x = NULL, story = NULL, quiet = TRUE, ...){ 
 
   if (!is.null(story)){

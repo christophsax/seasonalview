@@ -28,7 +28,7 @@ series0 <- function(m, series, reeval = TRUE, data.frame = FALSE){
     return(data.frame(time = time, df0))
   }
   
-  z <- try(xts::as.xts(z0))
+  z <- try(as.xts(z0))
 
   if (inherits(z, "try-error")){
     z <- try(xts::xts(z0, order.by = as.Date(paste(seq(NROW(z0)), "1", "1", sep = "-"))))
