@@ -18,6 +18,7 @@ html_coefs <- function(x){
 
 html_stats <- function(x, digits = 5){
   x <- summary(x)
+  class(x) <- "seas"  # make udg() working
 
   z <- list()
 
@@ -29,13 +30,13 @@ html_stats <- function(x, digits = 5){
   }
   
   z <- c(z, list(
-            c("ARIMA", x$model$arima$model),
-            c("Obs.", formatC(x$lks['nobs'], format = "d")),
-            c("Transform", x$transform.function),
-            c("AICc", formatC(x$lks['Aicc'], digits = digits)),
-            c("BIC", formatC(x$lks['bic'], digits = digits))
-          )
+          c("ARIMA", x$model$arima$model),
+          c("Obs.", formatC(nobs(x), format = "d")),
+          c("Transform", x$transform.function),
+          c("AICc", formatC(unname(seasonal::udg(x, "aicc")), digits = digits)),
+          c("BIC", formatC(BIC(x), digits = digits))
         )
+      )
 
   df <- data.frame(do.call(rbind, z))
 
