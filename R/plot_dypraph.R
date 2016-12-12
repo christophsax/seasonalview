@@ -25,7 +25,9 @@ plot_dygraph <- function(m, series = "main"){
   d <- dygraphs::dyOptions(d, gridLineColor = "#E1E5EA", 
                  axisLineColor = "#303030",
                  colors = (series.colors[1:NCOL(ser)]),
-                 animatedZooms = TRUE)
+                 animatedZooms = TRUE,
+                 retainDateWindow = TRUE
+                 )
   d
 
 }

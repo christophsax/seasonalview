@@ -29,7 +29,18 @@ shinydashboard::dashboardPage(
       ),
 
       shiny::column(8,
-        shinydashboard::box(title = uiOutput("oViewSelect"), dygraphs::dygraphOutput("oMainPlot"), footer = shiny::uiOutput("oLabel"), width = NULL),
+        tags$div(id="output-box", class="box",
+          tags$div(class = "box-header with-border",
+            tags$h3(class = "box-title", uiOutput("oViewSelect")),
+            HTML('<small id = "info-zoom" class = "pull-right text-muted">click and drag to zoom &mdash; double-click to restore</small>')
+          ),
+          tags$div(class = "box-body", 
+            dygraphs::dygraphOutput("oMainPlot")
+          ),
+          tags$div(class = "box-footer", 
+            shiny::uiOutput("oLabel")
+          )
+        ),
         shinydashboard::box(title = "Summary", 
           shiny::fluidRow(
             shiny::column(4, shiny::uiOutput("oSummaryCoefs")),
@@ -43,15 +54,7 @@ shinydashboard::dashboardPage(
 
     # additional stuff at the end
     html.modal,
-    # shinyIDCallback.js relies on this
-    shiny::HTML('
-    <script>
-        $(".shiny-id-el").click(function() {
-              $(".shiny-id-el").removeClass("active");
-              $(this).addClass("active");
-            });
-    </script>
-    '),
+    shiny::tags$script(src = "docs.js"),
     if (on.website){
       ga
     } else {
