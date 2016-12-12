@@ -13,8 +13,8 @@ if (exists(".model.passed.to.shiny", where = sys.frame(1))){
 
   # move to view() when x13story is on CRAN
   # if (!requireNamespace("x13story", quietly = TRUE)){  
-  if (!require("x13story", quietly = TRUE)){  ## currently needed
-    stop("The 'x13story' package is needed to display stories.\n\n  devtools::install_github('christophsax/x13story')")
+  if (!suppressWarnings(require("x13story", quietly = TRUE))){  ## currently needed
+    stop("The 'x13story' package is needed to display stories.\n\n  devtools::install_github('christophsax/x13story')", call. = FALSE)
   }
 
   cat("Press ESC (or Ctrl-C) to get back to the R session\n")

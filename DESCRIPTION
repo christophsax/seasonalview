@@ -10,10 +10,10 @@ Description: A graphical graphical user interface to the seasonal package and
   seasonalview package unifies the code base of www.seasonal.website and the GUI
   in the seasonal package.
 Depends:
-  seasonal (>= 1.3)
+  seasonal (>= 1.3),
+  shiny (>= 0.14)
 Imports:
   shinydashboard (>= 0.5.3),
-  shiny (>= 0.14),
   dygraphs (>= 1.1.1.3),
   openxlsx,
   xtable,
