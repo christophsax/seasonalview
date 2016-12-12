@@ -32,7 +32,7 @@ shinydashboard::dashboardPage(
         tags$div(id="output-box", class="box",
           tags$div(class = "box-header with-border",
             tags$h3(class = "box-title", uiOutput("oViewSelect")),
-            HTML('<small id = "info-zoom" class = "pull-right text-muted">click and drag to zoom &mdash; double-click to restore</small>')
+            HTML('<small hidden id = "info-zoom" class = "pull-right text-muted">click and drag to zoom &mdash; double-click to restore</small>')
           ),
           tags$div(class = "box-body", 
             dygraphs::dygraphOutput("oMainPlot")
