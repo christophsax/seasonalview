@@ -12,7 +12,8 @@ if (exists(".model.passed.to.shiny", where = sys.frame(1))){
   run.mode <- "x13story"  
 
   # move to view() when x13story is on CRAN
-  if (!requireNamespace("x13story", quietly = TRUE)){  
+  # if (!requireNamespace("x13story", quietly = TRUE)){  
+  if (!require("x13story", quietly = TRUE)){  ## currently needed
     stop("The 'x13story' package is needed to display stories.\n\n  devtools::install_github('christophsax/x13story')")
   }
 
@@ -81,10 +82,10 @@ for (i in 2:length(lFOpts)){
 # --- List with series ---------------------------------------------------------
 
 # SPECS <- read.csv("ressources/speclist/table_web.csv", header = TRUE, stringsAsFactors = FALSE)
-# save(SPECS, file = "~/seasweb/specs.rdata")
+# save(SPECS, file = "data/specs.RData")
 
 # upper part of iSeries 
-load(file = file.path(wd, "specs.rdata"))
+load(file = file.path(wd, "data/specs.RData"))
 
 lSeries <- list()
 lSeries$MAIN <- c("Original and Adjusted Series" = "main", "Original and Adjusted Series (%)" = "mainpc")
@@ -124,16 +125,16 @@ if (run.mode == "seasonal"){
 
 } else if (run.mode == "x13story"){
   # loading the already evaluated init.model saves 1/4 sec.
-  load("init.model.rdata")
+  load("data/init.model.RData")
   # init.model <- seas(AirPassengers)
-  # save(init.model, file = "init.model.rdata")
+  # save(init.model, file = "data/init.model.RData")
 
   story <- get(".story.filename.passed.to.shiny", envir = sys.frame(1))
   init.story <- x13story::parse_x13story(file = story)
 
 } else {
   # loading the already evaluated init.model saves 1/4 sec.
-  load("init.model.rdata")
+  load("data/init.model.RData")
   init.story <- NULL
 }
 
