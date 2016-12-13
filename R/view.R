@@ -57,7 +57,7 @@
 #' @export
 #' @importFrom xtable xtable
 #' @importFrom utils read.csv data download.file
-#' @importFrom stats ts is.ts cycle time Box.test shapiro.test symnum coef lag
+#' @importFrom stats ts is.ts cycle time Box.test shapiro.test symnum coef lag BIC nobs
 #' @importFrom dygraphs dygraph dyAnnotation dyLegend dyOptions
 #' @importFrom seasonal outlier
 #' @importFrom shiny tags tagList HTML
