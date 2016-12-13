@@ -15,6 +15,10 @@ To install from GitHub, use:
 
     devtools::install_github("christophsax/seasonalview")
 
+Once on CRAN, use:
+
+    install.packages("seasonalview")
+
 
 ### Seasonal
 
