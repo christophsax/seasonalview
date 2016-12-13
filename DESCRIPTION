@@ -6,7 +6,7 @@ Date: 2016-12-14
 Author: Christoph Sax
 Maintainer: Christoph Sax <christoph.sax@gmail.com>
 Description: A graphical graphical user interface to the seasonal package and 
-  X-13ARIMA-SEATS, the U.S. Census Buereau's seasonal adjustement software. The
+  X-13ARIMA-SEATS, the U.S. Census Buereau's seasonal adjustment software. The
   seasonalview package unifies the code base of www.seasonal.website and the GUI
   in the seasonal package.
 Depends:
