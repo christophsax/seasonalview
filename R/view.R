@@ -14,14 +14,14 @@
 #' the graphical output, and the summary. With the 'To console' button, 
 #' the GUI is closed and the call is imported to R. The 'Static' button
 #' substitutes automatic procedures by the automatically chosen 
-#' spec-argument options, in the same way as the \code{\link{static}} function 
-#' from the seasonal package.
+#' spec-argument options, in the same way as the \code{\link[seasonal]{static}} 
+#' function.
 #'
 #' If you are familiar with the X-13 spec syntax, you can modify the X-13 call,
 #' with the same consequences as when modifying the R call.
 #'
 #' The lower right panel shows the summary, as described in the help page of
-#' \code{\link{summary.seas}}. The 'X-13 output' button opens the complete 
+#' \code{\link[seasonal]{summary.seas}}. The 'X-13 output' button opens the complete 
 #' output of X-13 in a separate tab or window.
 #' 
 #' If you have the x13story package installed (not yet on CRAN, see references), 
@@ -33,7 +33,7 @@
 #' @param story character, local file path or URL to an \code{".Rmd"} file. 
 #' @param quiet logical, if \code{TRUE} (default), error messages from calls in 
 #'   \code{view} are not shown in the console.
-#' @param ... arguments passed to \code{\link[shiny]{runApp}}. E.g, for selecting 
+#' @param ... arguments passed to \code{\link[shiny]{runApp}}. E.g., for selecting 
 #'   if the GUI should open in the browser or in the RStudio viewer pane.
 #' 
 #' @references Seasonal vignette with a more detailed description: 
