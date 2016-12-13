@@ -18,7 +18,7 @@ html_coefs <- function(x){
 
 html_stats <- function(x, digits = 5){
   x <- summary(x)
-  class(x) <- "seas"  # make udg() working
+  class(x) <- "seas"  # make udg() working
 
   z <- list()
 
