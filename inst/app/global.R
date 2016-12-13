@@ -1,3 +1,5 @@
+library(seasonalview)  # to be able to run the app without loading the package
+
 # --- Mode ---------------------------------------------------------------------
 
 # Shiny app supports 3 modes: 
