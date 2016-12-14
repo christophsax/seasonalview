@@ -7,7 +7,7 @@
 \title{Graphical User Interface for Seasonal Adjustment}
 \description{
 A graphical user interface to the seasonal package and 
-X-13ARIMA-SEATS, the U.S. Census Buereau's seasonal adjustment software. The
+X-13ARIMA-SEATS, the U.S. Census Bureau's seasonal adjustment software. The
 seasonalview package unifies the code base of 
 \url{http://www.seasonal.website} with the GUI in the seasonal package.
 }
