@@ -11,13 +11,14 @@ These interfaces have grown over time and have become difficult to maintain. The
 **seasonalview** package is an attempt to unify their code base. It takes the
 best from each interface, and makes it available to the others. 
 
-To install from GitHub, use:
-
-    devtools::install_github("christophsax/seasonalview")
-
-Once on CRAN, use:
+To install from CRAN, use:
 
     install.packages("seasonalview")
+
+
+To install the development version from GitHub, use:
+
+    devtools::install_github("christophsax/seasonalview")
 
 
 ### Seasonal
