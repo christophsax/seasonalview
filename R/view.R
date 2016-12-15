@@ -24,7 +24,7 @@
 #' \code{\link[seasonal]{summary.seas}}. The 'X-13 output' button opens the complete 
 #' output of X-13 in a separate tab or window.
 #' 
-#' If you have the x13story package installed (not yet on CRAN, see references), 
+#' If you have the \pkg{x13story} package installed (not yet on CRAN, see references), 
 #' you can call the function with the \code{story} argument. This will render 
 #' an R Markdown document and produce a \emph{story} on seasonal adjustment that 
 #' can be manipulated interactively.
@@ -39,7 +39,7 @@
 #' @references Seasonal vignette with a more detailed description: 
 #'   \url{http://www.seasonal.website/seasonal.html}
 #' 
-#'   Development version of the x13story package: 
+#'   Development version of the \pkg{x13story} package: 
 #'   \url{https://github.com/christophsax/x13story}
 #' 
 #' @return \code{view} returns an object of class \code{"seas"}, the modified 

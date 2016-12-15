@@ -3,10 +3,10 @@
 #' A graphical user interface to the seasonal package and 
 #' X-13ARIMA-SEATS, the U.S. Census Bureau's seasonal adjustment software. The
 #' seasonalview package unifies the code base of 
-#' \url{http://www.seasonal.website} with the GUI in the seasonal package.
+#' \url{http://www.seasonal.website} with the GUI in the \pkg{seasonal} package.
 #' 
 #' Have a look at the README for usage examples: 
-#' \url{https://github.com/christophsax/seasonalview}
+#' \url{https://cran.r-project.org/web/packages/seasonalview/README.html}
 #' 
 #' @name seasonalview-package
 #' @aliases seasonalview
