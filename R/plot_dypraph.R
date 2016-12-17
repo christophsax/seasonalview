@@ -1,16 +1,17 @@
 plot_dygraph <- function(m, series = "main"){
+
   ser <- series0(m, series, reeval = FALSE)
   if(!inherits(ser, "xts")){
     message("This view is not available for the model. Change view or model.")
     return(NULL)
   }
+  per <- periodicity_xtsimp(ser)
 
-  per <- xts::periodicity(ser)
-  d <- dygraph(ser, periodicity = per)  
+  d <- dygraph_xtsimp(ser, periodicity = per)  
   if (series %in% c("main", "mainpc")){
     om <- outlier(m)
     if (any(!is.na(om))){
-        ot <- time(xts::as.xts(om))[!is.na(om)]
+        ot <- time_xtsimp(as_xts_xtsimp(om))[!is.na(om)]
         ol <- om[!is.na(om)]
         for (i in 1:length(ot)){
             # d <- dyEvent(d, date = ot[i], label = ol[i], labelLoc = "bottom")
@@ -31,3 +32,6 @@ plot_dygraph <- function(m, series = "main"){
   d
 
 }
+
+
+

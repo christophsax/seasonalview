@@ -1,4 +1,4 @@
-library(seasonalview)  # to be able to run the app without loading the package
+# library(seasonalview)  # to be able to run the app without loading the package
 
 # --- Mode ---------------------------------------------------------------------
 
@@ -25,14 +25,13 @@ if (exists(".model.passed.to.shiny", where = sys.frame(1))){
   run.mode <- "standalone"  
 }
 
-
 # triggers a few changes that we want to use on www.seasonal.website
 on.website <- FALSE
-
 
 # --- app directory ------------------------------------------------------------
 
 if (on.website){
+  library(seasonalview)
   wd <- "."
   sapply(list.files(file.path(wd, "functions"), full.names=TRUE), source)
 } else {

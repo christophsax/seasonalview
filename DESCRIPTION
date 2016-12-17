@@ -11,10 +11,10 @@ Description: A graphical user interface to the 'seasonal' package and
   'seasonal' package.
 Depends:
   R (>= 3.0.0),
-  seasonal (>= 1.3),
-  shiny (>= 0.14)
+  seasonal (>= 1.3)
 Imports:
   shinydashboard (>= 0.5.3),
+  shiny (>= 0.14),
   dygraphs (>= 1.1.1.3),
   openxlsx,
   xtable,
