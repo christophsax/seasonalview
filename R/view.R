@@ -79,7 +79,8 @@ view <- function(x = NULL, story = NULL, quiet = TRUE, ...){
       story <- tfile
     }
 
-    .story.filename.passed.to.shiny <- normalizePath(story)
+    shiny::shinyOptions(.story.filename.passed.to.shiny = normalizePath(story))
+    on.exit(shiny::shinyOptions(.story.filename.passed.to.shiny = NULL))
 
     wd <- system.file("app", package = "seasonalview")
     shiny::runApp(wd, quiet = quiet)
@@ -90,9 +91,12 @@ view <- function(x = NULL, story = NULL, quiet = TRUE, ...){
     stop("first argument must be of class 'seas'")
   }
 
+  shiny::shinyOptions(.model.passed.to.shiny = x)
+  on.exit(shiny::shinyOptions(.model.passed.to.shiny = NULL))
+
   # so we know from which frame to pick stuff up
-  Sys.setenv(SHINY_CALL_NFRAME = sys.nframe())
-  .model.passed.to.shiny <- x
+  # Sys.setenv(SHINY_CALL_NFRAME = sys.nframe())
+  # .model.passed.to.shiny <- x
 
   cat("Press ESC (or Ctrl-C) to get back to the R session\n")
 

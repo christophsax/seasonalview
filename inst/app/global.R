@@ -10,13 +10,16 @@
 
 # frame number from which we can pick up stuff passed to shiny app 
 # (1 if seasonalview::view is called from globalenv)
-call.nframe <- as.integer(Sys.getenv("SHINY_CALL_NFRAME"))
+
+# browser()
+
+# call.nframe <- as.integer(Sys.getenv("SHINY_CALL_NFRAME"))
 
 # message("called from: ", call.nframe)
 
-if (exists(".model.passed.to.shiny", where = sys.frame(call.nframe))){
+if (!is.null(getShinyOption(".model.passed.to.shiny"))){
   run.mode <- "seasonal"  
-} else if (exists(".story.filename.passed.to.shiny", where = sys.frame(call.nframe))){
+} else if (!is.null(getShinyOption(".story.filename.passed.to.shiny"))){
   run.mode <- "x13story"  
 
   # move this to view() when x13story is on CRAN
@@ -127,7 +130,7 @@ lSeries$`RARELY USED VIEWS` <- ruv
 # --- Initial model / story ----------------------------------------------------
 
 if (run.mode == "seasonal"){
-  init.model <- get(".model.passed.to.shiny", envir = sys.frame(call.nframe))
+  init.model <- getShinyOption(".model.passed.to.shiny")
   init.story <- NULL
 
 } else if (run.mode == "x13story"){
@@ -136,7 +139,7 @@ if (run.mode == "seasonal"){
   # init.model <- seas(AirPassengers)
   # save(init.model, file = "data/init.model.RData")
 
-  story <- get(".story.filename.passed.to.shiny", envir = sys.frame(call.nframe))
+  story <- getShinyOption(".story.filename.passed.to.shiny")
   init.story <- x13story::parse_x13story(file = story)
 
 } else {
