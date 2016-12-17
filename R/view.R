@@ -90,6 +90,8 @@ view <- function(x = NULL, story = NULL, quiet = TRUE, ...){
     stop("first argument must be of class 'seas'")
   }
 
+  # so we know from which frame to pick stuff up
+  Sys.setenv(SHINY_CALL_NFRAME = sys.nframe())
   .model.passed.to.shiny <- x
 
   cat("Press ESC (or Ctrl-C) to get back to the R session\n")

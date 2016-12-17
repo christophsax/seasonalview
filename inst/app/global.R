@@ -8,12 +8,18 @@
 # 2. x13-story  where it works on an .Rmd file, to render stories
 # 3. stand-alone, with upload and download buttons
 
-if (exists(".model.passed.to.shiny", where = sys.frame(1))){
+# frame number from which we can pick up stuff passed to shiny app 
+# (1 if seasonalview::view is called from globalenv)
+call.nframe <- as.integer(Sys.getenv("SHINY_CALL_NFRAME"))
+
+# message("called from: ", call.nframe)
+
+if (exists(".model.passed.to.shiny", where = sys.frame(call.nframe))){
   run.mode <- "seasonal"  
-} else if (exists(".story.filename.passed.to.shiny", where = sys.frame(1))){
+} else if (exists(".story.filename.passed.to.shiny", where = sys.frame(call.nframe))){
   run.mode <- "x13story"  
 
-  # move to view() when x13story is on CRAN
+  # move this to view() when x13story is on CRAN
   # if (!requireNamespace("x13story", quietly = TRUE)){  
   if (!suppressWarnings(require("x13story", quietly = TRUE))){  ## currently needed
     stop("The 'x13story' package is needed to display stories.\n\n  devtools::install_github('christophsax/x13story')", call. = FALSE)
@@ -121,7 +127,7 @@ lSeries$`RARELY USED VIEWS` <- ruv
 # --- Initial model / story ----------------------------------------------------
 
 if (run.mode == "seasonal"){
-  init.model <- get(".model.passed.to.shiny", envir = sys.frame(1))
+  init.model <- get(".model.passed.to.shiny", envir = sys.frame(call.nframe))
   init.story <- NULL
 
 } else if (run.mode == "x13story"){
@@ -130,7 +136,7 @@ if (run.mode == "seasonal"){
   # init.model <- seas(AirPassengers)
   # save(init.model, file = "data/init.model.RData")
 
-  story <- get(".story.filename.passed.to.shiny", envir = sys.frame(1))
+  story <- get(".story.filename.passed.to.shiny", envir = sys.frame(call.nframe))
   init.story <- x13story::parse_x13story(file = story)
 
 } else {
