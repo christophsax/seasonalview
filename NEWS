@@ -1,5 +1,13 @@
-0.1.4   2016-12-14
+0.1.5   2016-??-??
 --------------------------------------------------------------------------------
+
+Under the hood:
+
+- better way to pass stuff to shiny app, using shinyOptions()
+- workaround functions to properly import xts, which depends on zoo functions, 
+  so that seasonalview can be imported from other packages, such as seasonal. 
+  This will be reworked once a new version of xts is on CRAN.
+  https://github.com/joshuaulrich/xts/issues/162
 
 Bug fixes:
 
