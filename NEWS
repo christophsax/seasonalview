@@ -3,7 +3,8 @@
 
 Under the hood:
 
-- better way to pass stuff to shiny app, using shinyOptions()
+- better way to pass stuff to shiny app, using shinyOptions().
+- uses import.spc() from seasonal 1.4 for X13 spc parsing.
 - workaround functions to properly import xts, which depends on zoo functions, 
   so that seasonalview can be imported from other packages, such as seasonal. 
   This will be reworked once a new version of xts is on CRAN.
@@ -11,7 +12,7 @@ Under the hood:
 
 Bug fixes:
 
-- Fixed issue that led to crash when X-13 code was manipulated.
+- Fixed issue that led to a crash when X-13 code was manipulated.
 
 
 

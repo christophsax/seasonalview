@@ -70,7 +70,7 @@ shiny::observe({
       }
     } else if (at == "X-13"){
       txt <- shiny::isolate(input$iTerminalX13)
-      call <- seasonalview:::import.spc2(txt = txt)$seas
+      call <- seasonal::import.spc(text = txt)$seas
       if (inherits(call, "try-error")){
         z <- call
       } else {
