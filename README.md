@@ -17,9 +17,9 @@ To install from CRAN, use:
 The main function of the package is the `view` function, which works like the 
 depreciated `inspect` function in
 [seasonal](https://cran.r-project.org/package=seasonal) (which it replaces). 
-Here is an example:
+[seasonalview](https://cran.r-project.org/package=seasonalview) is imported by [seasonal](https://cran.r-project.org/package=seasonal), so loading is not necessary:
 
-    library(seasonal)  # seasonalview is imported from seasonal
+    library(seasonal)  
     m <- seas(AirPassengers)
     view(m)
 
