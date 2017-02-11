@@ -7,27 +7,19 @@ interfaces from the [seasonal](https://cran.r-project.org/package=seasonal) and
 [x13story](https://github.com/christophsax/x13story) packages and the online
 adjustment tool on [www.seasonal.website](http://www.seasonal.website).
 
-These interfaces have grown over time and have become difficult to maintain. The
-**seasonalview** package is an attempt to unify their code base. It takes the
-best from each interface, and makes it available to the others. 
-
 To install from CRAN, use:
 
     install.packages("seasonalview")
 
 
-To install the development version from GitHub, use:
-
-    devtools::install_github("christophsax/seasonalview")
-
-
 ### Seasonal
 
-The main function of the package is the `view` function, which works similar as
-the current `inspect` function in
-[seasonal](https://cran.r-project.org/package=seasonal). Here is an example:
+The main function of the package is the `view` function, which works like the 
+depreciated `inspect` function in
+[seasonal](https://cran.r-project.org/package=seasonal) (which it replaces). 
+Here is an example:
 
-    library(seasonalview)      # this will also attach seasonal
+    library(seasonal)                 # seasonalview is imported from seasonal
     m <- seas(AirPassengers)
     view(m)
 
@@ -53,6 +45,7 @@ or on a server. While itself not very useful, the `standalone` function
 showcases how a local version of
 [www.seasonal.website](http://www.seasonal.website) would look like:
 
+    library(seasonalview)
     standalone()
 
 <img src="https://raw.githubusercontent.com/christophsax/seasonalview/master/img/standalone.png" width="70%"/>
