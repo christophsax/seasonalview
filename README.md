@@ -19,7 +19,7 @@ depreciated `inspect` function in
 [seasonal](https://cran.r-project.org/package=seasonal) (which it replaces). 
 Here is an example:
 
-    library(seasonal)                 # seasonalview is imported from seasonal
+    library(seasonal)  # seasonalview is imported from seasonal
     m <- seas(AirPassengers)
     view(m)
 
@@ -30,10 +30,12 @@ Here is an example:
 
 If you have the [x13story](https://github.com/christophsax/x13story) package
 installed, you can call the function with the `story` argument. This will render
-an R Markdown document and produce a *story* on seasonal adjustment that can be
-manipulated interactively. 
+an 
+[R Markdown document](https://raw.githubusercontent.com/christophsax/x13story/master/inst/stories/x11.Rmd) 
+and produce a *story* on seasonal adjustment that can be manipulated
+interactively.
 
-    view(story = system.file(package = "x13story", "stories", "x11.Rmd"))
+    view(story = "https://raw.githubusercontent.com/christophsax/x13story/master/inst/stories/x11.Rmd")
 
 <img src="https://raw.githubusercontent.com/christophsax/seasonalview/master/img/x13story.png" width="70%"/>
 
