@@ -2,8 +2,8 @@
 % Please edit documentation in R/seasonalview-package.R
 \docType{package}
 \name{seasonalview-package}
-\alias{seasonalview}
 \alias{seasonalview-package}
+\alias{seasonalview}
 \title{Graphical User Interface for Seasonal Adjustment}
 \description{
 A graphical user interface to the seasonal package and 
@@ -13,13 +13,12 @@ seasonalview package unifies the code base of
 }
 \details{
 Have a look at the README for usage examples: 
-\url{https://cran.r-project.org/web/packages/seasonalview/README.html}
-}
-\author{
-Christoph Sax \email{christoph.sax@gmail.com}
+\url{https://CRAN.R-project.org/package=seasonalview/README.html}
 }
 \seealso{
 \code{\link{view}} for the main function of seasonalview.
 }
+\author{
+Christoph Sax \email{christoph.sax@gmail.com}
+}
 \keyword{package}
-

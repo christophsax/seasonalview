@@ -7,27 +7,19 @@ interfaces from the [seasonal](https://cran.r-project.org/package=seasonal) and
 [x13story](https://github.com/christophsax/x13story) packages and the online
 adjustment tool on [www.seasonal.website](http://www.seasonal.website).
 
-These interfaces have grown over time and have become difficult to maintain. The
-**seasonalview** package is an attempt to unify their code base. It takes the
-best from each interface, and makes it available to the others. 
-
 To install from CRAN, use:
 
     install.packages("seasonalview")
 
 
-To install the development version from GitHub, use:
-
-    devtools::install_github("christophsax/seasonalview")
-
-
 ### Seasonal
 
-The main function of the package is the `view` function, which works similar as
-the current `inspect` function in
-[seasonal](https://cran.r-project.org/package=seasonal). Here is an example:
+The main function of the package is the `view` function, which works like the 
+depreciated `inspect` function in
+[seasonal](https://cran.r-project.org/package=seasonal) (which it replaces). 
+[seasonalview](https://cran.r-project.org/package=seasonalview) is imported by [seasonal](https://cran.r-project.org/package=seasonal), so loading is not necessary:
 
-    library(seasonalview)      # this will also attach seasonal
+    library(seasonal)  
     m <- seas(AirPassengers)
     view(m)
 
@@ -38,10 +30,12 @@ the current `inspect` function in
 
 If you have the [x13story](https://github.com/christophsax/x13story) package
 installed, you can call the function with the `story` argument. This will render
-an R Markdown document and produce a *story* on seasonal adjustment that can be
-manipulated interactively. 
+an 
+[R Markdown document](https://raw.githubusercontent.com/christophsax/x13story/master/inst/stories/x11.Rmd) 
+and produce a *story* on seasonal adjustment that can be manipulated
+interactively.
 
-    view(story = system.file(package = "x13story", "stories", "x11.Rmd"))
+    view(story = "https://raw.githubusercontent.com/christophsax/x13story/master/inst/stories/x11.Rmd")
 
 <img src="https://raw.githubusercontent.com/christophsax/seasonalview/master/img/x13story.png" width="70%"/>
 
@@ -53,6 +47,7 @@ or on a server. While itself not very useful, the `standalone` function
 showcases how a local version of
 [www.seasonal.website](http://www.seasonal.website) would look like:
 
+    library(seasonalview)
     standalone()
 
 <img src="https://raw.githubusercontent.com/christophsax/seasonalview/master/img/standalone.png" width="70%"/>

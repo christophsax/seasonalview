@@ -6,7 +6,7 @@
 #' \url{http://www.seasonal.website} with the GUI in the \pkg{seasonal} package.
 #' 
 #' Have a look at the README for usage examples: 
-#' \url{https://cran.r-project.org/web/packages/seasonalview/README.html}
+#' \url{https://CRAN.R-project.org/package=seasonalview/README.html}
 #' 
 #' @name seasonalview-package
 #' @aliases seasonalview

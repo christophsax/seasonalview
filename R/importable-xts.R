@@ -8,8 +8,11 @@
 # (the underlying problem is that the xts package DEPENDS on zoo, and all the
 # following packages have to depend as well. The 'dygraphs' package circumvents
 # this problem by exporting the functions from zoo, but this makes the dygraph
-# package non- exportable.)
+# package non-exportable.)
 
+
+#' @importFrom stats frequency tsp median end start
+#' @importFrom htmlwidgets createWidget sizingPolicy
 dygraph_xtsimp <- function (data, main = NULL, xlab = NULL, ylab = NULL, periodicity = NULL, 
     group = NULL, elementId = NULL, width = NULL, height = NULL) 
 {
@@ -28,7 +31,12 @@ dygraph_xtsimp <- function (data, main = NULL, xlab = NULL, ylab = NULL, periodi
     if (format == "date") {
         if (is.null(periodicity)) {
             if (nrow(data) < 2) {
-                periodicity <- defaultPeriodicity(data)
+                # content of: dygraphs:::defaultPeriodicity
+                periodicity <- structure(list(difftime = structure(0, units = "secs", 
+                    class = "difftime"), frequency = 0, start = start(data), 
+                    end = end(data), units = "secs", scale = "seconds", label = "second"), 
+                    class = "periodicity")
+                # periodicity <- defaultPeriodicity(data)
             }
             else {
                 periodicity <- xts::periodicity(data)
@@ -130,7 +138,8 @@ time_xtsimp <- function (x, ...){
     return(zoo::as.yearmon(.POSIXct(xts::.index(x), tz = attr(xts::.index(x), "tzone"))))
   if (xts::indexClass(x) == "yearqtr")
     return(zoo::as.yearqtr(.POSIXct(xts::.index(x), tz = attr(xts::.index(x), "tzone"))))
-  xts:::time.xts(x)
+  # xts:::time.xts(x)
+  time(x)
 }
 
 
@@ -145,8 +154,7 @@ as_xts_xtsimp <- function(x) {
                 dateFormat <- ifelse(max(time(x)) > 86400, "POSIXct", 
                   "Date")
                 order.by <- do.call(paste("as", dateFormat, sep = "."), 
-                  list(as.numeric(time(x)), origin = "1970-01-01", 
-                    ...))
+                  list(as.numeric(time(x)), origin = "1970-01-01"))
             } else {
                 mo <- ifelse(length(mo) < 1, 1, floor(mo * 12) + 
                   1)

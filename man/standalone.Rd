@@ -19,4 +19,3 @@ standalone()
 \seealso{
 \code{\link{view}} to interactively modify a \code{"seas"} object.
 }
-
