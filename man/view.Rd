@@ -69,4 +69,3 @@ Seasonal vignette with a more detailed description:
   Development version of the \pkg{x13story} package: 
   \url{https://github.com/christophsax/x13story}
 }
-
