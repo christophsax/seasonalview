@@ -5,9 +5,9 @@ Version: 0.2
 Date: 2017-02-11
 Author: Christoph Sax
 Maintainer: Christoph Sax <christoph.sax@gmail.com>
-Description: A graphical user interface to the 'seasonal' package and 
+Description: A graphical user interface to the 'seasonal' package and
   'X-13ARIMA-SEATS', the U.S. Census Bureau's seasonal adjustment software. 
-  Unifies the code base of <http://www.seasonal.website> and the GUI in the 
+  Unifies the code base of <http://www.seasonal.website> and the GUI in the
   'seasonal' package.
 Depends:
   R (>= 3.0.0),
