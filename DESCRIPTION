@@ -1,8 +1,8 @@
 Package: seasonalview
 Type: Package
 Title: Graphical User Interface for Seasonal Adjustment
-Version: 0.2
-Date: 2017-02-11
+Version: 0.2.1
+Date: 2017-04-06
 Author: Christoph Sax
 Maintainer: Christoph Sax <christoph.sax@gmail.com>
 Description: A graphical user interface to the 'seasonal' package and
