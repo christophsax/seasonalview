@@ -136,7 +136,9 @@ add_fopts <- function(x, FOpts){
   if (is.null(FOpts$td)) FOpts$td <- "user"
 
   if (FOpts$method == "X11"){
-    lc$x11 <- ""
+    # add empty x11 if no other x11 arg is specified
+    if (!any(grepl("^x11\\.", names(lc))))  lc$x11 <- ""
+    # rm all seats arg
     lc <- lc[!grepl("^seats\\.", names(lc))]
   } else if (FOpts$method == "SEATS"){
     lc$x11 <- NULL
