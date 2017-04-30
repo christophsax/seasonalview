@@ -1,3 +1,14 @@
+0.2.1  2017-04-30
+--------------------------------------------------------------------------------
+
+Bug fixes:
+
+- do not add empty x11 = "" at the end of the R call
+  https://github.com/christophsax/seasonalview/issues/10
+- 'auto expand' of R and X-13 box was buggy and has been removed
+  https://github.com/christophsax/seasonalview/issues/12
+
+
 0.2    2017-02-11
 --------------------------------------------------------------------------------
 
