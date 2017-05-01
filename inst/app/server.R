@@ -293,7 +293,7 @@ shiny::observe({
 # show error msg on error
 shiny::observe({
   if (rError$msg == "") return(NULL)
-  rawerr <- seasonal:::err_to_html(rError$msg)
+  rawerr <- seasonalview:::err_to_html(rError$msg)
   irev <- shiny::HTML('<button id="iRevert" type="button" class="btn action-button btn-danger" style = "margin-right: 4px; margin-top: 10px;">Revert</button>')
   error.id <<- shiny::showNotification(shiny::HTML(rawerr), action = irev, duration = NULL, type = "error")
 })
