@@ -33,7 +33,7 @@ if (on.website){
   ql <- shiny::parseQueryString(qstr)
   if (!is.null(ql$call)){
     txt <- ql$call
-    call <- try(as.call(parse(text = txt)[[1]]))
+    call <- try(as.call(parse(text = txt)[[1]]), silent = TRUE)
     if (inherits(call, "try-error")){
       z <- call
     } else {
@@ -62,7 +62,7 @@ shiny::observe({
 
     if (at == "R"){
       txt <- shiny::isolate(input$iTerminal)
-      call <- try(as.call(parse(text = txt)[[1]]))
+      call <- try(as.call(parse(text = txt)[[1]]), silent = TRUE)
       if (inherits(call, "try-error")){
         z <- call
       } else {
