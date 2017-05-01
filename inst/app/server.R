@@ -182,18 +182,7 @@ output$oTerminal <- shiny::renderUI({
   m <- rModel$seas
   cstr <- seasonalview:::format_seascall(m$call)
   shiny::tagList(
-  shiny::tags$textarea(id="iTerminal", class="form-control", rows = 10, cols=60, cstr),
-    # auto extending the textarea (a bit hacky)
-    shiny::HTML('
-    <script>
-        $(document).ready(function(){
-            $("#iTerminal").on("keyup keydown", function(){
-              this.style.height = "2px";
-              this.style.height =  this.scrollHeight + "px";
-            })
-        })
-    </script>
-    ')
+    shiny::tags$textarea(id="iTerminal", class="form-control", cstr)
   )
 })
 
@@ -202,17 +191,7 @@ output$oTerminalX13 <- shiny::renderUI({
   m <- rModel$seas
   cstr <- seasonal:::deparse_spclist(m$spc)
   shiny::tagList(
-  shiny::tags$textarea(id="iTerminalX13", style = "min-height: 692px;", class="form-control", cols=60, cstr),
-      shiny::HTML('
-    <script>
-        $(document).ready(function(){
-            $("#iTerminalX13").on("keyup", function(){
-              this.style.height = "2px";
-              this.style.height =  this.scrollHeight + "px";
-            })
-        })
-    </script>
-    ')
+    shiny::tags$textarea(id="iTerminalX13", class="form-control", cstr)
   )
 })
 
