@@ -144,6 +144,7 @@ time_xtsimp <- function (x, ...){
 
 
 as_xts_xtsimp <- function(x) {
+    stopifnot(inherits(x, "ts"))
     x.mat <- structure(as.matrix(x), dimnames = dimnames(x))
     colnames(x.mat) <- colnames(x)
 

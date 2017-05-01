@@ -2,7 +2,7 @@ plot_dygraph <- function(m, series = "main"){
 
   ser <- series0(m, series, reeval = FALSE)
   if(!inherits(ser, "xts")){
-    message("This view is not available for the model. Change view or model.")
+    # message("This view is not available for the model. Change view or model.")
     return(NULL)
   }
   per <- periodicity_xtsimp(ser)
