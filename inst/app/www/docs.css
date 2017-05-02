@@ -12,9 +12,15 @@
 textarea {
     resize: vertical;
     overflow-y: scroll;
-    overflow-x: scroll;
     min-height:200px;
+}
+
+/*no softwraps only works well on webkit browsers, it removes all newlines in others*/
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  textarea {
+    overflow-x: scroll;
     white-space: nowrap;
+  }
 }
 
 /*more space in shiny notfications*/

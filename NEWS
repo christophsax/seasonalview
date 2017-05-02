@@ -1,4 +1,4 @@
-0.2.2  2017-05-01
+0.2.2  2017-05-02
 --------------------------------------------------------------------------------
 
 Bug fixes:
@@ -10,6 +10,7 @@ Bug fixes:
 - add 'err_to_html' to seasonal, which was removed from the seasonal package, 
   causing an application crash on error.
 - less verbosity on the console. No output is written, unless it's a bug.
+
 
 0.2    2017-02-11
 --------------------------------------------------------------------------------
