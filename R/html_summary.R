@@ -82,8 +82,8 @@ html_tests <- function(x, digits = 4){
 
   a <- print(xtable(df), type = "html", html.table.attributes = "class = 'table table-condensed'", include.rownames = FALSE, include.colnames = FALSE,  print.results = FALSE)
 
-  a <- gsub(' \\*\\*\\* ', '<span class="label label-table label-error">0.1%</span>', a)
-  a <- gsub(' \\*\\* ', '<span class="label label-table label-error">1%</span>', a)
+  a <- gsub(' \\*\\*\\* ', '<span class="label label-table label-danger">0.1%</span>', a)
+  a <- gsub(' \\*\\* ', '<span class="label label-table label-danger">1%</span>', a)
   a <- gsub(' \\* ', '<span class="label label-table label-warning">5%</span>', a)
   a <- gsub(' \\. ', '<span class="label label-table label-info">10%</span>', a)
 
