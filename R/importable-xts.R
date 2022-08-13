@@ -133,10 +133,10 @@ periodicity_xtsimp <- function(x){
 
 
 time_xtsimp <- function (x, ...){
-  if (is.null(xts::indexClass(x))) return(NULL)
-  if (xts::indexClass(x) == "yearmon")
+  if (is.null(xts::tclass(x))) return(NULL)
+  if (xts::tclass(x) == "yearmon")
     return(zoo::as.yearmon(.POSIXct(xts::.index(x), tz = attr(xts::.index(x), "tzone"))))
-  if (xts::indexClass(x) == "yearqtr")
+  if (xts::tclass(x) == "yearqtr")
     return(zoo::as.yearqtr(.POSIXct(xts::.index(x), tz = attr(xts::.index(x), "tzone"))))
   # xts:::time.xts(x)
   time(x)
