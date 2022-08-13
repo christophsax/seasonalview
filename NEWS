@@ -4,6 +4,7 @@
 Bug fixes:
 
 - Remove warning about 'xts::indexClass' is deprecated. #15
+- Significance tags visible for all levels #14
 
 
 0.3  2017-05-04

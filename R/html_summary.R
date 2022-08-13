@@ -10,7 +10,7 @@ html_coefs <- function(x){
   a <- print(xtable(df), type = "html", html.table.attributes = "class = 'table table-condensed'", include.rownames = FALSE, include.colnames = FALSE,  print.results = FALSE)
   a <- gsub(' \\*\\*\\* ', '<span class="label label-table label-primary">0.1%</span>', a)
   a <- gsub(' \\*\\* ', '<span class="label label-table label-info">1%</span>', a)
-  a <- gsub(' \\* ', '<span class="label label-table label-mint">5%</span>', a)
+  a <- gsub(' \\* ', '<span class="label label-table label-default">5%</span>', a)
   a <- gsub(' \\. ', '<span class="label label-table label-default">10%</span>', a)
   a
 }
@@ -85,7 +85,7 @@ html_tests <- function(x, digits = 4){
   a <- gsub(' \\*\\*\\* ', '<span class="label label-table label-error">0.1%</span>', a)
   a <- gsub(' \\*\\* ', '<span class="label label-table label-error">1%</span>', a)
   a <- gsub(' \\* ', '<span class="label label-table label-warning">5%</span>', a)
-  a <- gsub(' \\. ', '<span class="label label-table label-default">10%</span>', a)
+  a <- gsub(' \\. ', '<span class="label label-table label-info">10%</span>', a)
 
 
   a <- gsub('\\(', '<br><small class="text-muted">', a)
