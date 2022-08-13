@@ -1,6 +1,11 @@
 Graphical User Interface for Seasonal Adjustment
 ------------------------------------------------
 
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/christophsax/seasonalview/workflows/R-CMD-check/badge.svg)](https://github.com/christophsax/seasonalview/actions)
+<!-- badges: end -->
+
+
 An R package that unifies the 
 [shiny](https://cran.r-project.org/package=shiny)-based graphical user 
 interfaces from the [seasonal](https://cran.r-project.org/package=seasonal) and
