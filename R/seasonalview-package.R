@@ -5,9 +5,6 @@
 #' seasonalview package unifies the code base of 
 #' \url{http://www.seasonal.website} with the GUI in the \pkg{seasonal} package.
 #' 
-#' Have a look at the README for usage examples: 
-#' \url{https://CRAN.R-project.org/package=seasonalview/README.html}
-#' 
 #' @name seasonalview-package
 #' @aliases seasonalview
 #' @author Christoph Sax \email{christoph.sax@@gmail.com}
