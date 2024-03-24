@@ -14,5 +14,3 @@ format_seascall <- function(x){
   z <- paste("seas(", argstr, ")", sep = "\n")
   z
 }
-
-
