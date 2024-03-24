@@ -2,7 +2,7 @@ Graphical User Interface for Seasonal Adjustment
 ------------------------------------------------
 
 <!-- badges: start -->
-[![R-CMD-check](https://github.com/christophsax/seasonalview/workflows/R-CMD-check/badge.svg)](https://github.com/christophsax/seasonalview/actions)
+[![R-CMD-check](https://github.com/christophsax/seasonalview/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/christophsax/seasonalview/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 
