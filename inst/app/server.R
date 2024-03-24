@@ -177,7 +177,7 @@ output$oSummaryTests <- shiny::renderUI({
   shiny::HTML(seasonalview:::html_tests(rModel$seas))
 })
 
-# terminal
+# terminal
 output$oTerminal <- shiny::renderUI({
   m <- rModel$seas
   cstr <- seasonalview:::format_seascall(m$call)
@@ -186,7 +186,7 @@ output$oTerminal <- shiny::renderUI({
   )
 })
 
-# x13terminal
+# x13terminal
 output$oTerminalX13 <- shiny::renderUI({
   m <- rModel$seas
   cstr <- seasonal:::deparse_spclist(m$spc)
@@ -198,7 +198,7 @@ output$oTerminalX13 <- shiny::renderUI({
 
 # --- stories ------------------------------------------------------------------
 
-# show dom only if code is present
+# show dom only if code is present
 output$oStory <- shiny::renderUI({
   story <- rStory$story
   view.no <- rStory$view.no

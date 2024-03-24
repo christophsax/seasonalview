@@ -63,15 +63,12 @@ showcases how a local version of
 **seasonalview** is free and open source, licensed under GPL-3. It is built on
 top of a large number of great open source tools. It uses
 [shiny](https://cran.r-project.org/package=shiny) and
-[shinydashboard](https://cran.r-project.org/package=shinydashboard), through
-which it accesses [jQuery](https://jquery.com),
-[bootstrap](http://getbootstrap.com) and
-[AdminLTE](https://almsaeedstudio.com/themes/AdminLTE/index2.html), which in
-turn depend on a plethora of open source web technologies themselves. It also
-uses [dygraphs](http://dygraphs.com), and, of course,
+[shinydashboard](https://cran.r-project.org/package=shinydashboard).
+It also
+uses [dygraphs](https://dygraphs.com/), and, of course,
 [seasonal](https://cran.r-project.org/package=seasonal),
 [x13binary](https://cran.r-project.org/package=x13binary) and
-[X-13ARIMA-SEATS](https://www.census.gov/srd/www/x13as/), the wonderful seasonal
+X-13ARIMA-SEATS, the wonderful seasonal
 adjustment software by the U.S. Census Bureau.
 
 Thanks for your feedback, your ideas and bug-reports. [Contact me.](mailto:christoph.sax@gmail.com)
