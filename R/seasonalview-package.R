@@ -10,7 +10,6 @@
 #' 
 #' @name seasonalview-package
 #' @aliases seasonalview
-#' @docType package
 #' @author Christoph Sax \email{christoph.sax@@gmail.com}
 #' @keywords package
 #' @seealso \code{\link{view}} for the main function of seasonalview.
