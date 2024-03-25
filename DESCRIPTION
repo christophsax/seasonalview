@@ -6,9 +6,7 @@ Authors@R: c(
     person("Christoph", "Sax", email = "christoph.sax@gmail.com", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-7192-7044"))
     )
 Description: A graphical user interface to the 'seasonal' package and
-  'X-13ARIMA-SEATS', the U.S. Census Bureau's seasonal adjustment software. 
-  Unifies the code base of <http://www.seasonal.website> and the GUI in the
-  'seasonal' package.
+  'X-13ARIMA-SEATS', the U.S. Census Bureau's seasonal adjustment software.
 Depends:
   R (>= 3.0.0),
   seasonal (>= 1.4)
