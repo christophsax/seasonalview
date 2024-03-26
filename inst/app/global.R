@@ -113,7 +113,8 @@ for (spi in sp){
 
 ### add rarely used views
 # lowser part of iSeries 
-data(specs, package = "seasonal")
+stopifnot(packageVersion("seasonal") >= "1.10.0")
+SPECS <- seasonal:::get_specs()
 
 # views already there
 pres <- unname(unlist(lSeries))
