@@ -22,5 +22,5 @@ Imports:
   zoo
 License: GPL-3
 URL: http://www.seasonal.website
-BugReports: https://github.com/christophsax/seasonalview
+BugReports: https://github.com/christophsax/seasonalview/issues
 RoxygenNote: 7.3.2
